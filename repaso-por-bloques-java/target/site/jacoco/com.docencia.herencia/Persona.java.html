@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Persona.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">docencia-bloques-solucion</a> &gt; <a href="index.source.html" class="el_package">com.docencia.herencia</a> &gt; <span class="el_source">Persona.java</span></div><h1>Persona.java</h1><pre class="source lang-java linenums">package com.docencia.herencia;
+
+public abstract class Persona {
+    private final String nombre;
+    private final String apellidos;
+    private final Integer edad;
+
+<span class="fc" id="L8">    protected Persona(String nombre, String apellidos, Integer edad) {</span>
+<span class="fc" id="L9">        this.nombre = nombre;</span>
+<span class="fc" id="L10">        this.apellidos = apellidos;</span>
+<span class="fc" id="L11">        this.edad = edad;</span>
+<span class="fc" id="L12">    }</span>
+
+<span class="nc" id="L14">    public String getNombre() { return nombre; }</span>
+<span class="nc" id="L15">    public String getApellidos() { return apellidos; }</span>
+<span class="nc" id="L16">    public Integer getEdad() { return edad; }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

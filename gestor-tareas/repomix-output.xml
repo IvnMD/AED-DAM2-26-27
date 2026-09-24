@@ -1,0 +1,2245 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+config/
+  settings-publico.xml
+src/
+  main/
+    java/
+      com/
+        codelearn/
+          tareas/
+            GestorTareas.java
+            Main.java
+    resources/
+      aplicacion.properties
+  test/
+    java/
+      com/
+        codelearn/
+          tareas/
+            GestorTareasTest.java
+GESTOR-TAREAS.md
+pom.xml
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="config/settings-publico.xml">
+<settings xmlns="http://maven.apache.org/SETTINGS/1.2.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.2.0 https://maven.apache.org/xsd/settings-1.2.0.xsd">
+  <profiles>
+    <profile>
+      <id>repositorio-publico</id>
+      <repositories>
+        <repository>
+          <id>central-explicito</id>
+          <url>https://repo.maven.apache.org/maven2</url>
+          <releases><enabled>true</enabled></releases>
+          <snapshots><enabled>false</enabled></snapshots>
+        </repository>
+      </repositories>
+    </profile>
+  </profiles>
+</settings>
+</file>
+
+<file path="src/main/java/com/codelearn/tareas/GestorTareas.java">
+package com.codelearn.tareas;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class GestorTareas {
+    private final List<String> titulos = new ArrayList<>();
+
+    public void anadir(String titulo) {
+        if (titulo == null || titulo.isBlank()) {
+            throw new IllegalArgumentException("El título es obligatorio");
+        }
+        titulos.add(titulo);
+    }
+
+    public List<String> listar() {
+        return List.copyOf(titulos);
+    }
+
+}
+</file>
+
+<file path="src/main/java/com/codelearn/tareas/Main.java">
+package com.codelearn.tareas;
+
+import com.google.gson.Gson;
+import java.util.Map;
+
+public class Main {
+    public static void main(String[] args) {
+        var datos = Map.of("titulo", "Aprender Maven", "completada", false);
+        System.out.println(new Gson().toJson(datos));
+    }
+}
+</file>
+
+<file path="src/main/resources/aplicacion.properties">
+nombre=Gestor de tareas
+</file>
+
+<file path="src/test/java/com/codelearn/tareas/GestorTareasTest.java">
+package com.codelearn.tareas;
+
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+class GestorTareasTest {
+    @Test
+    void anadeUnaTarea() {
+        var gestor = new GestorTareas();
+        gestor.anadir("Aprender Maven");
+        assertEquals(1, gestor.listar().size());
+        assertEquals("Aprender Maven", gestor.listar().get(0));
+    }
+
+    @Test
+    void rechazaTituloVacio() {
+        var gestor = new GestorTareas();
+        assertThrows(IllegalArgumentException.class, () -> gestor.anadir(" "));
+    }
+
+    @Test
+    void rechazaTituloNull() {
+        var gestor = new GestorTareas();
+        assertThrows(IllegalArgumentException.class, () -> gestor.anadir(null));
+    }
+
+    @Test
+    void listarDevuelveCopiaInmutable() {
+        var gestor = new GestorTareas();
+        gestor.anadir("Tarea 1");
+
+        var copia = gestor.listar();
+        assertThrows(UnsupportedOperationException.class, () -> copia.add("Otra"));
+    }
+}
+</file>
+
+<file path="GESTOR-TAREAS.md">
+## PASO 3
+```
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ mvn validate
+[INFO] Scanning for projects...
+[INFO]
+[INFO] --------------------< com.codelearn:gestor-tareas >---------------------
+[INFO] Building gestor-tareas 1.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.170 s
+[INFO] Finished at: 2026-09-22T17:12:43+01:00
+[INFO] ------------------------------------------------------------------------
+
+```
+
+## PASO 4 
+
+```
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ mvn clean compile
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< com.codelearn:gestor-tareas >---------------------
+[INFO] Building gestor-tareas 1.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ gestor-tareas ---
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-shared-utils/3.3.4/maven-shared-utils-3.3.4.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-shared-utils/3.3.4/maven-shared-utils-3.3.4.jar (153 kB at 200 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/commons-io/commons-io/2.6/commons-io-2.6.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/commons-io/commons-io/2.6/commons-io-2.6.jar (215 kB at 1.5 MB/s)
+[INFO] Deleting /home/ivan/Documentos/AED/gestor-tareas/target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ gestor-tareas ---
+[INFO] skip non existing resourceDirectory /home/ivan/Documentos/AED/gestor-tareas/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ gestor-tareas ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 1 source file with javac [debug release 21] to target/classes
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.120 s
+[INFO] Finished at: 2026-09-22T19:03:55+01:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project gestor-tareas: Fatal error compiling: error: release version 21 not supported -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+```
++ Despues de corregir la version de JKD en el POM por:
+```
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+```
++ Resultado:
+```
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ mvn clean
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< com.codelearn:gestor-tareas >---------------------
+[INFO] Building gestor-tareas 1.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ gestor-tareas ---
+[INFO] Deleting /home/ivan/Documentos/AED/gestor-tareas/target
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.340 s
+[INFO] Finished at: 2026-09-22T19:13:06+01:00
+[INFO] ------------------------------------------------------------------------
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ mvn compile
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< com.codelearn:gestor-tareas >---------------------
+[INFO] Building gestor-tareas 1.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ gestor-tareas ---
+[INFO] skip non existing resourceDirectory /home/ivan/Documentos/AED/gestor-tareas/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ gestor-tareas ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 1 source file with javac [debug target 17] to target/classes
+[WARNING] system modules path not set in conjunction with -source 17
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.007 s
+[INFO] Finished at: 2026-09-22T19:13:13+01:00
+[INFO] ------------------------------------------------------------------------
+```
+## PASO 5
+
+```
+[INFO] Building jar: /home/ivan/Documentos/AED/gestor-tareas/target/gestor-tareas-1.0.0-SNAPSHOT.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  7.431 s
+[INFO] Finished at: 2026-09-22T19:15:26+01:00
+[INFO] ------------------------------------------------------------------------V
+
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ mvn clean verify
+
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< com.codelearn:gestor-tareas >---------------------
+[INFO] Building gestor-tareas 1.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ gestor-tareas ---
+[INFO] Deleting /home/ivan/Documentos/AED/gestor-tareas/target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ gestor-tareas ---
+[INFO] skip non existing resourceDirectory /home/ivan/Documentos/AED/gestor-tareas/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ gestor-tareas ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 1 source file with javac [debug target 17] to target/classes
+[WARNING] system modules path not set in conjunction with -source 17
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ gestor-tareas ---
+[INFO] skip non existing resourceDirectory /home/ivan/Documentos/AED/gestor-tareas/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ gestor-tareas ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ gestor-tareas ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ gestor-tareas ---
+[INFO] Building jar: /home/ivan/Documentos/AED/gestor-tareas/target/gestor-tareas-1.0.0-SNAPSHOT.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.565 s
+[INFO] Finished at: 2026-09-22T19:17:16+01:00
+[INFO] ------------------------------------------------------------------------
+```
+#### Fase 1. Identificar el usuario y el entorno
+```
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ whoami
+pwd
+java -version
+javac -version
+mvn -version
+echo "$JAVA_HOME"
+echo "$PATH"
+ivan
+/home/ivan/Documentos/AED/gestor-tareas
+openjdk version "21.0.12.1" 2026-08-18
+OpenJDK Runtime Environment (build 21.0.12.1+1-1-deb13u1-Debian)
+OpenJDK 64-Bit Server VM (build 21.0.12.1+1-1-deb13u1-Debian, mixed mode, sharing)
+bash: javac: orden no encontrada
+Apache Maven 3.9.9
+Maven home: /usr/share/maven
+Java version: 21.0.12.1, vendor: Debian, runtime: /usr/lib/jvm/java-21-openjdk-amd64
+Default locale: es_ES, platform encoding: UTF-8
+OS name: "linux", version: "6.12.107+deb13-amd64", arch: "amd64", family: "unix"
+
+/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
+```
+#### Fase 2. Instalar una segunda versión del JDK
+```
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ update-alternatives --list java
+update-alternatives --list javac
+/usr/lib/jvm/java-21-openjdk-amd64/bin/java
+/usr/lib/jvm/temurin-17-jdk-amd64/bin/java
+/usr/lib/jvm/temurin-17-jdk-amd64/bin/javac
+```
+#### Fase 3. Seleccionar el JDK activo
+
+```
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ sudo update-alternatives --config java
+sudo update-alternatives --config javac
+Existen 2 opciones para la alternativa java (que provee /usr/bin/java).
+
+  Selección   Ruta                                         Prioridad  Estado
+------------------------------------------------------------
+  0            /usr/lib/jvm/java-21-openjdk-amd64/bin/java   2111      modo automático
+  1            /usr/lib/jvm/java-21-openjdk-amd64/bin/java   2111      modo manual
+* 2            /usr/lib/jvm/temurin-17-jdk-amd64/bin/java    1711      modo manual
+
+Pulse <Intro> para mantener el valor por omisión [*] o pulse un número de selección: 2
+Existe 1 opción para la alternativa javac (que provee /usr/bin/javac).
+
+  Selección   Ruta                                         Prioridad  Estado
+------------------------------------------------------------
+* 0            /usr/lib/jvm/temurin-17-jdk-amd64/bin/javac   1711      modo automático
+  1            /usr/lib/jvm/temurin-17-jdk-amd64/bin/javac   1711      modo manual
+
+Pulse <Intro> para mantener el valor por omisión [*] o pulse un número de selección: 
+```
+```
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ java -version
+javac -version
+mvn -version
+echo "$JAVA_HOME"
+openjdk version "17.0.20.1" 2026-08-18
+OpenJDK Runtime Environment Temurin-17.0.20.1+1 (build 17.0.20.1+1)
+OpenJDK 64-Bit Server VM Temurin-17.0.20.1+1 (build 17.0.20.1+1, mixed mode, sharing)
+javac 17.0.20.1
+The JAVA_HOME environment variable is not defined correctly,
+this environment variable is needed to run this program.
+/usr/lib/jvm/java-17-openjdk-amd64
+```
+```
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ sudo update-alternatives --config java
+sudo update-alternatives --config javac
+export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
+export PATH="$JAVA_HOME/bin:$PATH"
+Existen 2 opciones para la alternativa java (que provee /usr/bin/java).
+
+  Selección   Ruta                                         Prioridad  Estado
+------------------------------------------------------------
+  0            /usr/lib/jvm/java-21-openjdk-amd64/bin/java   2111      modo automático
+  1            /usr/lib/jvm/java-21-openjdk-amd64/bin/java   2111      modo manual
+* 2            /usr/lib/jvm/temurin-17-jdk-amd64/bin/java    1711      modo manual
+
+Pulse <Intro> para mantener el valor por omisión [*] o pulse un número de selección: 0
+update-alternatives: utilizando /usr/lib/jvm/java-21-openjdk-amd64/bin/java para proveer /usr/bin/java (java) en modo automático
+Existe 1 opción para la alternativa javac (que provee /usr/bin/javac).
+
+  Selección   Ruta                                         Prioridad  Estado
+------------------------------------------------------------
+* 0            /usr/lib/jvm/temurin-17-jdk-amd64/bin/javac   1711      modo automático
+  1            /usr/lib/jvm/temurin-17-jdk-amd64/bin/javac   1711      modo manual
+
+Pulse <Intro> para mantener el valor por omisión [*] o pulse un número de selección: 0
+
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ java -version
+javac -version
+mvn -version
+openjdk version "21.0.12.1" 2026-08-18
+OpenJDK Runtime Environment (build 21.0.12.1+1-1-deb13u1-Debian)
+OpenJDK 64-Bit Server VM (build 21.0.12.1+1-1-deb13u1-Debian, mixed mode, sharing)
+javac 17.0.20.1
+Apache Maven 3.9.9
+Maven home: /usr/share/maven
+Java version: 21.0.12.1, vendor: Debian, runtime: /usr/lib/jvm/java-21-openjdk-amd64
+Default locale: es_ES, platform encoding: UTF-8
+OS name: "linux", version: "6.12.107+deb13-amd64", arch: "amd64", family: "unix"
+```
+#### Fase 4. Construir el proyecto
+```
+[INFO] Building jar: /home/ivan/Documentos/AED/gestor-tareas/target/gestor-tareas-1.0.0-SNAPSHOT.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.819 s
+[INFO] Finished at: 2026-09-22T19:50:42+01:00
+[INFO] ------------------------------------------------------------------------
+```
+```
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ find target -maxdepth 2 -type f | sort
+target/gestor-tareas-1.0.0-SNAPSHOT.jar
+target/maven-archiver/pom.properties
+```
+#### Fase 5. Comprobar la relación entre JDK y Maven
+```
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.717 s
+[INFO] Finished at: 2026-09-22T20:12:24+01:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project gestor-tareas: Fatal error compiling: error: release version 21 not supported -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ sudo update-alternatives --config java
+sudo update-alternatives --config javac
+export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
+export PATH="$JAVA_HOME/bin:$PATH"
+Existen 2 opciones para la alternativa java (que provee /usr/bin/java).
+
+  Selección   Ruta                                         Prioridad  Estado
+------------------------------------------------------------
+* 0            /usr/lib/jvm/java-21-openjdk-amd64/bin/java   2111      modo automático
+  1            /usr/lib/jvm/java-21-openjdk-amd64/bin/java   2111      modo manual
+  2            /usr/lib/jvm/temurin-17-jdk-amd64/bin/java    1711      modo manual
+
+Pulse <Intro> para mantener el valor por omisión [*] o pulse un número de selección: 
+Existen 2 opciones para la alternativa javac (que provee /usr/bin/javac).
+
+  Selección   Ruta                                          Prioridad  Estado
+------------------------------------------------------------
+* 0            /usr/lib/jvm/java-21-openjdk-amd64/bin/javac   2111      modo automático
+  1            /usr/lib/jvm/java-21-openjdk-amd64/bin/javac   2111      modo manual
+  2            /usr/lib/jvm/temurin-17-jdk-amd64/bin/javac    1711      modo manual
+
+Pulse <Intro> para mantener el valor por omisión [*] o pulse un número de selección: 0
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ mvn clean compile
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< com.codelearn:gestor-tareas >---------------------
+[INFO] Building gestor-tareas 1.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ gestor-tareas ---
+[INFO] Deleting /home/ivan/Documentos/AED/gestor-tareas/target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ gestor-tareas ---
+[INFO] skip non existing resourceDirectory /home/ivan/Documentos/AED/gestor-tareas/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ gestor-tareas ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 1 source file with javac [debug release 21] to target/classes
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.072 s
+[INFO] Finished at: 2026-09-22T20:19:25+01:00
+[INFO] ------------------------------------------------------------------------
+```
+## PASO 6
+
+```
+[INFO] com.codelearn:gestor-tareas:jar:1.0.0-SNAPSHOT
+[INFO] \- com.google.code.gson:gson:jar:2.11.0:compile
+[INFO]    \- com.google.errorprone:error_prone_annotations:jar:2.27.0:compile
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  7.987 s
+[INFO] Finished at: 2026-09-22T20:22:09+01:00
+[INFO] ------------------------------------------------------------------------
+```
++ Despues de eliminar la dependencia de gson
+```
+  symbol:   class Gson
+  location: class com.codelearn.tareas.Main
+[INFO] 2 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.243 s
+[INFO] Finished at: 2026-09-22T21:29:03+01:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project gestor-tareas: Compilation failure: Compilation failure: 
+[ERROR] /home/ivan/Documentos/AED/gestor-tareas/src/main/java/com/codelearn/tareas/Main.java:[3,23] package com.google.gson does not exist
+[ERROR] /home/ivan/Documentos/AED/gestor-tareas/src/main/java/com/codelearn/tareas/Main.java:[9,32] cannot find symbol
+[ERROR]   symbol:   class Gson
+[ERROR]   location: class com.codelearn.tareas.Main
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+```
+
+## PARTE 7
+
+```
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ ls -l ~/.m2/repository/com/google/code/gson/gson/2.11.0/
+total 316
+-rw-rw-r-- 1 ivan ivan 298435 sep 22 20:21 gson-2.11.0.jar
+-rw-rw-r-- 1 ivan ivan     40 sep 22 20:21 gson-2.11.0.jar.sha1
+-rw-rw-r-- 1 ivan ivan  11821 sep 22 20:21 gson-2.11.0.pom
+-rw-rw-r-- 1 ivan ivan     40 sep 22 20:21 gson-2.11.0.pom.sha1
+-rw-rw-r-- 1 ivan ivan    191 sep 22 20:21 _remote.repositories
+``` 
+``` 
+[INFO] Installing /home/ivan/Documentos/AED/gestor-tareas/pom.xml to /home/ivan/.m2/repository/com/codelearn/gestor-tareas/1.0.0-SNAPSHOT/gestor-tareas-1.0.0-SNAPSHOT.pom
+[INFO] Installing /home/ivan/Documentos/AED/gestor-tareas/target/gestor-tareas-1.0.0-SNAPSHOT.jar to /home/ivan/.m2/repository/com/codelearn/gestor-tareas/1.0.0-SNAPSHOT/gestor-tareas-1.0.0-SNAPSHOT.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.528 s
+[INFO] Finished at: 2026-09-22T21:33:31+01:00
+[INFO] ------------------------------------------------------------------------
+``` 
+``` 
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ mvn -o package
+[INFO] Scanning for projects...
+[INFO]
+[INFO] --------------------< com.codelearn:gestor-tareas >---------------------
+[INFO] Building gestor-tareas 1.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- resources:3.3.1:resources (default-resources) @ gestor-tareas ---
+[INFO] skip non existing resourceDirectory /home/ivan/Documentos/AED/gestor-tareas/src/main/resources
+[INFO]
+[INFO] --- compiler:3.13.0:compile (default-compile) @ gestor-tareas ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ gestor-tareas ---
+[INFO] skip non existing resourceDirectory /home/ivan/Documentos/AED/gestor-tareas/src/test/resources
+[INFO]
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ gestor-tareas ---
+[INFO] No sources to compile
+[INFO]
+[INFO] --- surefire:3.5.2:test (default-test) @ gestor-tareas ---
+[INFO] No tests to run.
+[INFO]
+[INFO] --- jar:3.4.2:jar (default-jar) @ gestor-tareas ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.797 s
+[INFO] Finished at: 2026-09-22T21:36:40+01:00
+[INFO] ------------------------------------------------------------------------
+``` 
+
+ + El comando mvn install solo copia el archivo empaquetado (el .jar) y su configuración (.pom) dentro del repositorio local del ordenador (en la carpeta .m2).Como esa carpeta está en el disco duro local, nadie más tiene acceso a ella. Para que otras personas pudieran utilizar el proyecto como una dependencia, tendría que subirsr a un servidor en internet utilizando el comando mvn deploy, el cual requiere credenciales y una configuración especial de red.
+
+## PARTE 8
+
+```
+Active Profiles for Project 'com.codelearn:gestor-tareas:jar:1.0.0-SNAPSHOT':
+
+The following profiles are active:
+
+ - repositorio-publico (source: external)
+
+
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  5.112 s
+[INFO] Finished at: 2026-09-22T21:41:51+01:00
+[INFO] ------------------------------------------------------------------------
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< com.codelearn:gestor-tareas >---------------------
+[INFO] Building gestor-tareas 1.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ gestor-tareas ---
+[INFO] skip non existing resourceDirectory /home/ivan/Documentos/AED/gestor-tareas/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ gestor-tareas ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.749 s
+[INFO] Finished at: 2026-09-22T21:41:54+01:00
+[INFO] ------------------------------------------------------------------------
+```
+
+## PARTE 9 
+
+```
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ export MAVEN_REPO_USER="ivan"
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ export MAVEN_REPO_TOKEN="123456"
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ mvn -s "$HOME/.m2/settings-empresa.xml" clean verify
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< com.codelearn:gestor-tareas >---------------------
+[INFO] Building gestor-tareas 1.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] Artifact org.apache.maven.plugins:maven-clean-plugin:pom:3.2.0 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [empresa (https://repo.empresa.example/repository/maven-public/, default, releases)]
+[INFO] Artifact org.apache.maven.plugins:maven-clean-plugin:pom:3.2.0 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [empresa (https://repo.empresa.example/repository/maven-public/, default, releases)]
+Downloading from empresa: https://repo.empresa.example/repository/maven-public/org/apache/maven/plugins/maven-clean-plugin/3.2.0/maven-clean-plugin-3.2.0.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.191 s
+[INFO] Finished at: 2026-09-22T22:56:39+01:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Plugin org.apache.maven.plugins:maven-clean-plugin:3.2.0 or one of its dependencies could not be resolved:
+[ERROR]         The following artifacts could not be resolved: org.apache.maven.plugins:maven-clean-plugin:pom:3.2.0 (present, but unavailable): Could not transfer artifact org.apache.maven.plugins:maven-clean-plugin:pom:3.2.0 from/to empresa (https://repo.empresa.example/repository/maven-public/): transfer failed for https://repo.empresa.example/repository/maven-public/org/apache/maven/plugins/maven-clean-plugin/3.2.0/maven-clean-plugin-3.2.0.pom
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/PluginResolutionException
+```
++ La configuracion de mirror y autenticacion funciona correctamente: Maven lee el archivo settings-empresa.xml, aplica el mirror empresa e intenta descargar los artefactos usando el usuario y token proporcionados.
+
+Sin embargo, la URL del mirror sigue apuntando a un dominio de ejemplo y este no corresponde a ningún servidor real y provoca un error
+
+## PARTE 10
+
+```
+[INFO] Building jar: /home/ivan/Documentos/AED/gestor-tareas/target/gestor-tareas-1.0.0-SNAPSHOT.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  5.295 s
+[INFO] Finished at: 2026-09-22T23:08:04+01:00
+[INFO] ------------------------------------------------------------------------
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ mvn -Pdistribucion clean package
+.
+.
+.
+[INFO] Attaching shaded artifact.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  7.577 s
+[INFO] Finished at: 2026-09-22T23:09:04+01:00
+[INFO] ------------------------------------------------------------------------
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ java -jar target/gestor-tareas-1.0.0-SNAPSHOT-all.jar
+{"completada":false,"titulo":"Aprender Maven"}
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ mvn -Pdistribucion,informe clean verify
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< com.codelearn:gestor-tareas >---------------------
+[INFO] Building gestor-tareas 1.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ gestor-tareas ---
+[INFO] Deleting /home/ivan/Documentos/AED/gestor-tareas/target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ gestor-tareas ---
+[INFO] skip non existing resourceDirectory /home/ivan/Documentos/AED/gestor-tareas/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ gestor-tareas ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 1 source file with javac [debug release 21] to target/classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ gestor-tareas ---
+[INFO] skip non existing resourceDirectory /home/ivan/Documentos/AED/gestor-tareas/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ gestor-tareas ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ gestor-tareas ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ gestor-tareas ---
+[INFO] Building jar: /home/ivan/Documentos/AED/gestor-tareas/target/gestor-tareas-1.0.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- shade:3.6.0:shade (default) @ gestor-tareas ---
+[INFO] Including com.google.code.gson:gson:jar:2.11.0 in the shaded jar.
+[INFO] Including com.google.errorprone:error_prone_annotations:jar:2.27.0 in the shaded jar.
+[WARNING] error_prone_annotations-2.27.0.jar, gestor-tareas-1.0.0-SNAPSHOT.jar, gson-2.11.0.jar define 1 overlapping resource: 
+[WARNING]   - META-INF/MANIFEST.MF
+[WARNING] error_prone_annotations-2.27.0.jar, gson-2.11.0.jar define 1 overlapping classes: 
+[WARNING]   - META-INF.versions.9.module-info
+[WARNING] maven-shade-plugin has detected that some files are
+[WARNING] present in two or more JARs. When this happens, only one
+[WARNING] single version of the file is copied to the uber jar.
+[WARNING] Usually this is not harmful and you can skip these warnings,
+[WARNING] otherwise try to manually exclude artifacts based on
+[WARNING] mvn dependency:tree -Ddetail=true and the above output.
+[WARNING] See https://maven.apache.org/plugins/maven-shade-plugin/
+[INFO] Attaching shaded artifact.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.692 s
+[INFO] Finished at: 2026-09-22T23:10:43+01:00
+[INFO] ------------------------------------------------------------------------
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ mvn -Pdistribucion help:active-profiles
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< com.codelearn:gestor-tareas >---------------------
+[INFO] Building gestor-tareas 1.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- help:3.5.2:active-profiles (default-cli) @ gestor-tareas ---
+[INFO] 
+Active Profiles for Project 'com.codelearn:gestor-tareas:jar:1.0.0-SNAPSHOT':
+
+The following profiles are active:
+
+ - distribucion (source: com.codelearn:gestor-tareas:1.0.0-SNAPSHOT)
+
+
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.246 s
+[INFO] Finished at: 2026-09-22T23:11:21+01:00
+[INFO] ------------------------------------------------------------------------
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ mvn -Pdistribucion help:effective-pom
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< com.codelearn:gestor-tareas >---------------------
+[INFO] Building gestor-tareas 1.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- help:3.5.2:effective-pom (default-cli) @ gestor-tareas ---
+[INFO] 
+Effective POMs, after inheritance, interpolation, and profiles are applied:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== -->
+<!--                                                                        -->
+<!-- Generated by Maven Help Plugin                                         -->
+<!-- See: https://maven.apache.org/plugins/maven-help-plugin/               -->
+<!--                                                                        -->
+<!-- ====================================================================== -->
+<!-- ====================================================================== -->
+<!--                                                                        -->
+<!-- Effective POM for project                                              -->
+<!-- 'com.codelearn:gestor-tareas:jar:1.0.0-SNAPSHOT'                       -->
+<!--                                                                        -->
+<!-- ====================================================================== -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.codelearn</groupId>
+  <artifactId>gestor-tareas</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <properties>
+    <maven.compiler.release>21</maven.compiler.release>
+    <maven.compiler.source>21</maven.compiler.source>
+    <maven.compiler.target>21</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.11.0</version>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
+  <repositories>
+    <repository>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>central</id>
+      <name>Central Repository</name>
+      <url>https://repo.maven.apache.org/maven2</url>
+    </repository>
+  </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>central</id>
+      <name>Central Repository</name>
+      <url>https://repo.maven.apache.org/maven2</url>
+    </pluginRepository>
+  </pluginRepositories>
+  <build>
+    <sourceDirectory>/home/ivan/Documentos/AED/gestor-tareas/src/main/java</sourceDirectory>
+    <scriptSourceDirectory>/home/ivan/Documentos/AED/gestor-tareas/src/main/scripts</scriptSourceDirectory>
+    <testSourceDirectory>/home/ivan/Documentos/AED/gestor-tareas/src/test/java</testSourceDirectory>
+    <outputDirectory>/home/ivan/Documentos/AED/gestor-tareas/target/classes</outputDirectory>
+    <testOutputDirectory>/home/ivan/Documentos/AED/gestor-tareas/target/test-classes</testOutputDirectory>
+    <resources>
+      <resource>
+        <directory>/home/ivan/Documentos/AED/gestor-tareas/src/main/resources</directory>
+      </resource>
+    </resources>
+    <testResources>
+      <testResource>
+        <directory>/home/ivan/Documentos/AED/gestor-tareas/src/test/resources</directory>
+      </testResource>
+    </testResources>
+    <directory>/home/ivan/Documentos/AED/gestor-tareas/target</directory>
+    <finalName>gestor-tareas-1.0.0-SNAPSHOT</finalName>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-antrun-plugin</artifactId>
+          <version>3.1.0</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-assembly-plugin</artifactId>
+          <version>3.7.1</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <version>3.7.0</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>3.0.1</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.13.0</version>
+        <executions>
+          <execution>
+            <id>default-compile</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>default-testCompile</id>
+            <phase>test-compile</phase>
+            <goals>
+              <goal>testCompile</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.5.2</version>
+        <executions>
+          <execution>
+            <id>default-test</id>
+            <phase>test</phase>
+            <goals>
+              <goal>test</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.4.2</version>
+        <executions>
+          <execution>
+            <id>default-jar</id>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.6.0</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <shadedArtifactAttached>true</shadedArtifactAttached>
+              <shadedClassifierName>all</shadedClassifierName>
+              <createDependencyReducedPom>false</createDependencyReducedPom>
+              <transformers>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                  <mainClass>com.codelearn.tareas.Main</mainClass>
+                </transformer>
+              </transformers>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-clean-plugin</artifactId>
+        <version>3.2.0</version>
+        <executions>
+          <execution>
+            <id>default-clean</id>
+            <phase>clean</phase>
+            <goals>
+              <goal>clean</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>3.3.1</version>
+        <executions>
+          <execution>
+            <id>default-testResources</id>
+            <phase>process-test-resources</phase>
+            <goals>
+              <goal>testResources</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>default-resources</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>resources</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-install-plugin</artifactId>
+        <version>3.1.2</version>
+        <executions>
+          <execution>
+            <id>default-install</id>
+            <phase>install</phase>
+            <goals>
+              <goal>install</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>3.1.2</version>
+        <executions>
+          <execution>
+            <id>default-deploy</id>
+            <phase>deploy</phase>
+            <goals>
+              <goal>deploy</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>3.12.1</version>
+        <executions>
+          <execution>
+            <id>default-site</id>
+            <phase>site</phase>
+            <goals>
+              <goal>site</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>/home/ivan/Documentos/AED/gestor-tareas/target/site</outputDirectory>
+              <reportPlugins>
+                <reportPlugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-project-info-reports-plugin</artifactId>
+                </reportPlugin>
+              </reportPlugins>
+            </configuration>
+          </execution>
+          <execution>
+            <id>default-deploy</id>
+            <phase>site-deploy</phase>
+            <goals>
+              <goal>deploy</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>/home/ivan/Documentos/AED/gestor-tareas/target/site</outputDirectory>
+              <reportPlugins>
+                <reportPlugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-project-info-reports-plugin</artifactId>
+                </reportPlugin>
+              </reportPlugins>
+            </configuration>
+          </execution>
+        </executions>
+        <configuration>
+          <outputDirectory>/home/ivan/Documentos/AED/gestor-tareas/target/site</outputDirectory>
+          <reportPlugins>
+            <reportPlugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-project-info-reports-plugin</artifactId>
+            </reportPlugin>
+          </reportPlugins>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <reporting>
+    <outputDirectory>/home/ivan/Documentos/AED/gestor-tareas/target/site</outputDirectory>
+  </reporting>
+  <profiles>
+    <profile>
+      <id>distribucion</id>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-shade-plugin</artifactId>
+            <version>3.6.0</version>
+            <executions>
+              <execution>
+                <phase>package</phase>
+                <goals>
+                  <goal>shade</goal>
+                </goals>
+                <configuration>
+                  <shadedArtifactAttached>true</shadedArtifactAttached>
+                  <shadedClassifierName>all</shadedClassifierName>
+                  <createDependencyReducedPom>false</createDependencyReducedPom>
+                  <transformers>
+                    <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                      <mainClass>com.codelearn.tareas.Main</mainClass>
+                    </transformer>
+                  </transformers>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>informe</id>
+      <properties>
+        <maven.compiler.showWarnings>true</maven.compiler.showWarnings>
+      </properties>
+    </profile>
+  </profiles>
+</project>
+
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.277 s
+[INFO] Finished at: 2026-09-22T23:11:54+01:00
+[INFO] ------------------------------------------------------------------------
+```
+
+```
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ mvn -Dinforme=true help:active-profiles
+mvn -Dinforme=true clean compile
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< com.codelearn:gestor-tareas >---------------------
+[INFO] Building gestor-tareas 1.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- help:3.5.2:active-profiles (default-cli) @ gestor-tareas ---
+[INFO] 
+Active Profiles for Project 'com.codelearn:gestor-tareas:jar:1.0.0-SNAPSHOT':
+
+The following profiles are active:
+
+ - informe (source: com.codelearn:gestor-tareas:1.0.0-SNAPSHOT)
+
+
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.117 s
+[INFO] Finished at: 2026-09-22T23:15:11+01:00
+[INFO] ------------------------------------------------------------------------
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< com.codelearn:gestor-tareas >---------------------
+[INFO] Building gestor-tareas 1.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ gestor-tareas ---
+[INFO] Deleting /home/ivan/Documentos/AED/gestor-tareas/target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ gestor-tareas ---
+[INFO] skip non existing resourceDirectory /home/ivan/Documentos/AED/gestor-tareas/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ gestor-tareas ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 1 source file with javac [debug release 21] to target/classes
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.125 s
+[INFO] Finished at: 2026-09-22T23:15:15+01:00
+[INFO] ------------------------------------------------------------------------
+```
+
+## PARTE 11
+
+```
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ mvn dependency:tree
+mvn dependency:tree -Dverbose
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< com.codelearn:gestor-tareas >---------------------
+[INFO] Building gestor-tareas 1.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- dependency:3.7.0:tree (default-cli) @ gestor-tareas ---
+[INFO] com.codelearn:gestor-tareas:jar:1.0.0-SNAPSHOT
+[INFO] \- com.google.code.gson:gson:jar:2.11.0:compile
+[INFO]    \- com.google.errorprone:error_prone_annotations:jar:2.27.0:compile
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.257 s
+[INFO] Finished at: 2026-09-22T23:16:48+01:00
+[INFO] ------------------------------------------------------------------------
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< com.codelearn:gestor-tareas >---------------------
+[INFO] Building gestor-tareas 1.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- dependency:3.7.0:tree (default-cli) @ gestor-tareas ---
+[INFO] com.codelearn:gestor-tareas:jar:1.0.0-SNAPSHOT
+[INFO] \- com.google.code.gson:gson:jar:2.11.0:compile
+[INFO]    \- com.google.errorprone:error_prone_annotations:jar:2.27.0:compile
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.592 s
+[INFO] Finished at: 2026-09-22T23:16:53+01:00
+[INFO] ------------------------------------------------------------------------
+
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ mvn dependency:tree -Dverbose -Dincludes=org.apache.commons
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< com.codelearn:gestor-tareas >---------------------
+[INFO] Building gestor-tareas 1.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- dependency:3.7.0:tree (default-cli) @ gestor-tareas ---
+[INFO] com.codelearn:gestor-tareas:jar:1.0.0-SNAPSHOT
+[INFO] +- org.apache.commons:commons-text:jar:1.12.0:compile
+[INFO] |  \- (org.apache.commons:commons-lang3:jar:3.14.0:compile - omitted for duplicate)
+[INFO] \- org.apache.commons:commons-lang3:jar:3.14.0:compile
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.735 s
+[INFO] Finished at: 2026-09-22T23:17:59+01:00
+[INFO] ------------------------------------------------------------------------
+```
++ Despues de la segunda modificacion del POM dejando solo una dependencia de commons-text
+```
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ mvn dependency:tree -Dverbose -Dincludes=org.apache.commons
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< com.codelearn:gestor-tareas >---------------------
+[INFO] Building gestor-tareas 1.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- dependency:3.7.0:tree (default-cli) @ gestor-tareas ---
+[INFO] com.codelearn:gestor-tareas:jar:1.0.0-SNAPSHOT
+[INFO] \- org.apache.commons:commons-text:jar:1.12.0:compile
+[INFO]    \- org.apache.commons:commons-lang3:jar:3.14.0:compile
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.633 s
+[INFO] Finished at: 2026-09-22T23:19:43+01:00
+[INFO] ------------------------------------------------------------------------
+```
+
+## PARTE 12
+
+```
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ mvn clean compile
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< com.codelearn:gestor-tareas >---------------------
+[INFO] Building gestor-tareas 1.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ gestor-tareas ---
+[INFO] Deleting /home/ivan/Documentos/AED/gestor-tareas/target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ gestor-tareas ---
+[INFO] skip non existing resourceDirectory /home/ivan/Documentos/AED/gestor-tareas/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ gestor-tareas ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 1 source file with javac [debug release 21] to target/classes
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.697 s
+[INFO] Finished at: 2026-09-22T23:24:03+01:00
+[INFO] ------------------------------------------------------------------------
+
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ mvn clean compile
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< com.codelearn:gestor-tareas >---------------------
+[INFO] Building gestor-tareas 1.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ gestor-tareas ---
+[INFO] Deleting /home/ivan/Documentos/AED/gestor-tareas/target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ gestor-tareas ---
+[INFO] skip non existing resourceDirectory /home/ivan/Documentos/AED/gestor-tareas/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ gestor-tareas ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 1 source file with javac [debug release 21] to target/classes
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.223 s
+[INFO] Finished at: 2026-09-22T23:26:44+01:00
+[INFO] ------------------------------------------------------------------------
+
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ mvn dependency:tree
+[INFO] Scanning for projects...
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-dependency-plugin/3.8.1/maven-dependency-plugin-3.8.1.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-dependency-plugin/3.8.1/maven-dependency-plugin-3.8.1.pom (18 kB at 19 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-dependency-plugin/3.8.1/maven-dependency-plugin-3.8.1.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-dependency-plugin/3.8.1/maven-dependency-plugin-3.8.1.jar (208 kB at 450 kB/s)
+[INFO] 
+[INFO] --------------------< com.codelearn:gestor-tareas >---------------------
+[INFO] Building gestor-tareas 1.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- dependency:3.8.1:tree (default-cli) @ gestor-tareas ---
+.
+.
+.
+[INFO] com.codelearn:gestor-tareas:jar:1.0.0-SNAPSHOT
+[INFO] \- com.google.code.gson:gson:jar:2.11.0:compile
+[INFO]    \- com.google.errorprone:error_prone_annotations:jar:2.27.0:compile
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  10.709 s
+[INFO] Finished at: 2026-09-22T23:30:57+01:00
+[INFO] ------------------------------------------------------------------------
+```
++POM efectivo
+
+```
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ mvn help:effective-pom -Doutput=target/pom-efectivo.xml
+[INFO] Scanning for projects...
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-wrapper-plugin/3.3.2/maven-wrapper-plugin-3.3.2.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-wrapper-plugin/3.3.2/maven-wrapper-plugin-3.3.2.pom (7.8 kB at 8.8 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/wrapper/maven-wrapper-parent/3.3.2/maven-wrapper-parent-3.3.2.pom
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/wrapper/maven-wrapper-parent/3.3.2/maven-wrapper-parent-3.3.2.pom (5.1 kB at 31 kB/s)
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-wrapper-plugin/3.3.2/maven-wrapper-plugin-3.3.2.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-wrapper-plugin/3.3.2/maven-wrapper-plugin-3.3.2.jar (27 kB at 146 kB/s)
+[INFO] 
+[INFO] --------------------< com.codelearn:gestor-tareas >---------------------
+[INFO] Building gestor-tareas 1.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- help:3.5.2:effective-pom (default-cli) @ gestor-tareas ---
+[INFO] Effective-POM written to: /home/ivan/Documentos/AED/gestor-tareas/target/pom-efectivo.xml
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.871 s
+[INFO] Finished at: 2026-09-22T23:31:55+01:00
+[INFO] ------------------------------------------------------------------------
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== -->
+<!--                                                                        -->
+<!-- Generated by Maven Help Plugin                                         -->
+<!-- See: https://maven.apache.org/plugins/maven-help-plugin/               -->
+<!--                                                                        -->
+<!-- ====================================================================== -->
+<!-- ====================================================================== -->
+<!--                                                                        -->
+<!-- Effective POM for project                                              -->
+<!-- 'com.codelearn:gestor-tareas:jar:1.0.0-SNAPSHOT'                       -->
+<!--                                                                        -->
+<!-- ====================================================================== -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.codelearn</groupId>
+  <artifactId>gestor-tareas</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <properties>
+    <gson.version>2.11.0</gson.version>
+    <junit.version>5.11.0</junit.version>
+    <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+    <maven-dependency-plugin.version>3.8.1</maven-dependency-plugin.version>
+    <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
+    <maven-shade-plugin.version>3.6.0</maven-shade-plugin.version>
+    <maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
+    <maven-wrapper-plugin.version>3.3.2</maven-wrapper-plugin.version>
+    <maven.compiler.release>21</maven.compiler.release>
+    <maven.compiler.source>21</maven.compiler.source>
+    <maven.compiler.target>21</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>com.google.code.gson</groupId>
+        <artifactId>gson</artifactId>
+        <version>2.11.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter</artifactId>
+        <version>5.11.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-api</artifactId>
+        <version>5.11.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-engine</artifactId>
+        <version>5.11.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-migrationsupport</artifactId>
+        <version>5.11.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-params</artifactId>
+        <version>5.11.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.platform</groupId>
+        <artifactId>junit-platform-commons</artifactId>
+        <version>1.11.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.platform</groupId>
+        <artifactId>junit-platform-console</artifactId>
+        <version>1.11.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.platform</groupId>
+        <artifactId>junit-platform-engine</artifactId>
+        <version>1.11.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.platform</groupId>
+        <artifactId>junit-platform-jfr</artifactId>
+        <version>1.11.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.platform</groupId>
+        <artifactId>junit-platform-launcher</artifactId>
+        <version>1.11.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.platform</groupId>
+        <artifactId>junit-platform-reporting</artifactId>
+        <version>1.11.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.platform</groupId>
+        <artifactId>junit-platform-runner</artifactId>
+        <version>1.11.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.platform</groupId>
+        <artifactId>junit-platform-suite</artifactId>
+        <version>1.11.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.platform</groupId>
+        <artifactId>junit-platform-suite-api</artifactId>
+        <version>1.11.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.platform</groupId>
+        <artifactId>junit-platform-suite-commons</artifactId>
+        <version>1.11.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.platform</groupId>
+        <artifactId>junit-platform-suite-engine</artifactId>
+        <version>1.11.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.platform</groupId>
+        <artifactId>junit-platform-testkit</artifactId>
+        <version>1.11.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.vintage</groupId>
+        <artifactId>junit-vintage-engine</artifactId>
+        <version>5.11.0</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+  <dependencies>
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.11.0</version>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
+  <repositories>
+    <repository>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>central</id>
+      <name>Central Repository</name>
+      <url>https://repo.maven.apache.org/maven2</url>
+    </repository>
+  </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>central</id>
+      <name>Central Repository</name>
+      <url>https://repo.maven.apache.org/maven2</url>
+    </pluginRepository>
+  </pluginRepositories>
+  <build>
+    <sourceDirectory>/home/ivan/Documentos/AED/gestor-tareas/src/main/java</sourceDirectory>
+    <scriptSourceDirectory>/home/ivan/Documentos/AED/gestor-tareas/src/main/scripts</scriptSourceDirectory>
+    <testSourceDirectory>/home/ivan/Documentos/AED/gestor-tareas/src/test/java</testSourceDirectory>
+    <outputDirectory>/home/ivan/Documentos/AED/gestor-tareas/target/classes</outputDirectory>
+    <testOutputDirectory>/home/ivan/Documentos/AED/gestor-tareas/target/test-classes</testOutputDirectory>
+    <resources>
+      <resource>
+        <directory>/home/ivan/Documentos/AED/gestor-tareas/src/main/resources</directory>
+      </resource>
+    </resources>
+    <testResources>
+      <testResource>
+        <directory>/home/ivan/Documentos/AED/gestor-tareas/src/test/resources</directory>
+      </testResource>
+    </testResources>
+    <directory>/home/ivan/Documentos/AED/gestor-tareas/target</directory>
+    <finalName>gestor-tareas-1.0.0-SNAPSHOT</finalName>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-antrun-plugin</artifactId>
+          <version>3.1.0</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-assembly-plugin</artifactId>
+          <version>3.7.1</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <version>3.7.0</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>3.0.1</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.13.0</version>
+        <executions>
+          <execution>
+            <id>default-compile</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>default-testCompile</id>
+            <phase>test-compile</phase>
+            <goals>
+              <goal>testCompile</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.5.2</version>
+        <executions>
+          <execution>
+            <id>default-test</id>
+            <phase>test</phase>
+            <goals>
+              <goal>test</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.4.2</version>
+        <executions>
+          <execution>
+            <id>default-jar</id>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.8.1</version>
+      </plugin>
+      <plugin>
+        <artifactId>maven-wrapper-plugin</artifactId>
+        <version>3.3.2</version>
+      </plugin>
+      <plugin>
+        <artifactId>maven-clean-plugin</artifactId>
+        <version>3.2.0</version>
+        <executions>
+          <execution>
+            <id>default-clean</id>
+            <phase>clean</phase>
+            <goals>
+              <goal>clean</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>3.3.1</version>
+        <executions>
+          <execution>
+            <id>default-testResources</id>
+            <phase>process-test-resources</phase>
+            <goals>
+              <goal>testResources</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>default-resources</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>resources</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-install-plugin</artifactId>
+        <version>3.1.2</version>
+        <executions>
+          <execution>
+            <id>default-install</id>
+            <phase>install</phase>
+            <goals>
+              <goal>install</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>3.1.2</version>
+        <executions>
+          <execution>
+            <id>default-deploy</id>
+            <phase>deploy</phase>
+            <goals>
+              <goal>deploy</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>3.12.1</version>
+        <executions>
+          <execution>
+            <id>default-site</id>
+            <phase>site</phase>
+            <goals>
+              <goal>site</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>/home/ivan/Documentos/AED/gestor-tareas/target/site</outputDirectory>
+              <reportPlugins>
+                <reportPlugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-project-info-reports-plugin</artifactId>
+                </reportPlugin>
+              </reportPlugins>
+            </configuration>
+          </execution>
+          <execution>
+            <id>default-deploy</id>
+            <phase>site-deploy</phase>
+            <goals>
+              <goal>deploy</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>/home/ivan/Documentos/AED/gestor-tareas/target/site</outputDirectory>
+              <reportPlugins>
+                <reportPlugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-project-info-reports-plugin</artifactId>
+                </reportPlugin>
+              </reportPlugins>
+            </configuration>
+          </execution>
+        </executions>
+        <configuration>
+          <outputDirectory>/home/ivan/Documentos/AED/gestor-tareas/target/site</outputDirectory>
+          <reportPlugins>
+            <reportPlugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-project-info-reports-plugin</artifactId>
+            </reportPlugin>
+          </reportPlugins>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <reporting>
+    <outputDirectory>/home/ivan/Documentos/AED/gestor-tareas/target/site</outputDirectory>
+  </reporting>
+  <profiles>
+    <profile>
+      <id>distribucion</id>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-shade-plugin</artifactId>
+            <version>3.6.0</version>
+            <executions>
+              <execution>
+                <phase>package</phase>
+                <goals>
+                  <goal>shade</goal>
+                </goals>
+                <configuration>
+                  <shadedArtifactAttached>true</shadedArtifactAttached>
+                  <shadedClassifierName>all</shadedClassifierName>
+                  <createDependencyReducedPom>false</createDependencyReducedPom>
+                  <transformers>
+                    <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                      <mainClass>com.codelearn.tareas.Main</mainClass>
+                    </transformer>
+                  </transformers>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>informe</id>
+      <activation>
+        <property>
+          <name>informe</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <properties>
+        <maven.compiler.showWarnings>true</maven.compiler.showWarnings>
+      </properties>
+    </profile>
+  </profiles>
+</project>
+
+```
+
+## PARTE 13
+
+```
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ mvn test
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< com.codelearn:gestor-tareas >---------------------
+[INFO] Building gestor-tareas 1.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+.
+.
+.
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.codelearn.tareas.GestorTareasTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.103 s -- in com.codelearn.tareas.GestorTareasTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  12.870 s
+[INFO] Finished at: 2026-09-22T23:37:28+01:00
+[INFO] ------------------------------------------------------------------------
+
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ mvn -Dtest=GestorTareasTest test
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< com.codelearn:gestor-tareas >---------------------
+[INFO] Building gestor-tareas 1.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ gestor-tareas ---
+[INFO] skip non existing resourceDirectory /home/ivan/Documentos/AED/gestor-tareas/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ gestor-tareas ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ gestor-tareas ---
+[INFO] skip non existing resourceDirectory /home/ivan/Documentos/AED/gestor-tareas/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ gestor-tareas ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ gestor-tareas ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.codelearn.tareas.GestorTareasTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.117 s -- in com.codelearn.tareas.GestorTareasTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.889 s
+[INFO] Finished at: 2026-09-22T23:39:19+01:00
+[INFO] ------------------------------------------------------------------------
+```
++Forzar fallo
+
+```
+[INFO] 
+[INFO] Results:
+[INFO] 
+[ERROR] Failures: 
+[ERROR]   GestorTareasTest.anadeUnaTarea:11 expected: <2> but was: <1>
+[INFO] 
+[ERROR] Tests run: 2, Failures: 1, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.971 s
+[INFO] Finished at: 2026-09-22T23:41:13+01:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.5.2:test (default-test) on project gestor-tareas: There are test failures.
+[ERROR] 
+[ERROR] See /home/ivan/Documentos/AED/gestor-tareas/target/surefire-reports for the individual test results.
+[ERROR] See dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+```
+
++ Test anyadidos
+
+```
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.codelearn.tareas.GestorTareasTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.145 s -- in com.codelearn.tareas.GestorTareasTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  5.951 s
+[INFO] Finished at: 2026-09-22T23:42:26+01:00
+[INFO] ------------------------------------------------------------------------
+```
+
+## PARTE 14
+
+```
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ mvn clean verify
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< com.codelearn:gestor-tareas >---------------------
+[INFO] Building gestor-tareas 1.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ gestor-tareas ---
+[INFO] Deleting /home/ivan/Documentos/AED/gestor-tareas/target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ gestor-tareas ---
+[INFO] skip non existing resourceDirectory /home/ivan/Documentos/AED/gestor-tareas/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ gestor-tareas ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 2 source files with javac [debug release 21] to target/classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ gestor-tareas ---
+[INFO] skip non existing resourceDirectory /home/ivan/Documentos/AED/gestor-tareas/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ gestor-tareas ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 1 source file with javac [debug release 21] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ gestor-tareas ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.codelearn.tareas.GestorTareasTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.119 s -- in com.codelearn.tareas.GestorTareasTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ gestor-tareas ---
+[INFO] Building jar: /home/ivan/Documentos/AED/gestor-tareas/target/gestor-tareas-1.0.0-SNAPSHOT.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  5.600 s
+[INFO] Finished at: 2026-09-22T23:44:13+01:00
+[INFO] ------------------------------------------------------------------------
+
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ ls -lh target/gestor-tareas-1.0.0-SNAPSHOT.jar
+-rw-rw-r-- 1 ivan ivan 3,9K sep 22 23:44 target/gestor-tareas-1.0.0-SNAPSHOT.jar
+
+
+```
+
++ Se fuerrza fallo
+
+```
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ mvn clean verify
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< com.codelearn:gestor-tareas >---------------------
+[INFO] Building gestor-tareas 1.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ gestor-tareas ---
+[INFO] Deleting /home/ivan/Documentos/AED/gestor-tareas/target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ gestor-tareas ---
+[INFO] skip non existing resourceDirectory /home/ivan/Documentos/AED/gestor-tareas/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ gestor-tareas ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 2 source files with javac [debug release 21] to target/classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /home/ivan/Documentos/AED/gestor-tareas/src/main/java/com/codelearn/tareas/GestorTareas.java:[20,17] method anadir(java.lang.String) is already defined in class com.codelearn.tareas.GestorTareas
+[INFO] 1 error
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.084 s
+[INFO] Finished at: 2026-09-22T23:47:01+01:00
+[INFO] ------------------------------------------------------------------------
+
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ ls -lh target/gestor-tareas-1.0.0-SNAPSHOT.jar 2>/dev/null || echo "No existe el JAR"
+No existe el JAR
+```
++ se restaura
+
+```
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ mvn clean verify
+echo $?
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< com.codelearn:gestor-tareas >---------------------
+[INFO] Building gestor-tareas 1.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ gestor-tareas ---
+[INFO] Deleting /home/ivan/Documentos/AED/gestor-tareas/target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ gestor-tareas ---
+[INFO] skip non existing resourceDirectory /home/ivan/Documentos/AED/gestor-tareas/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ gestor-tareas ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 2 source files with javac [debug release 21] to target/classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ gestor-tareas ---
+[INFO] skip non existing resourceDirectory /home/ivan/Documentos/AED/gestor-tareas/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ gestor-tareas ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 1 source file with javac [debug release 21] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ gestor-tareas ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.codelearn.tareas.GestorTareasTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.150 s -- in com.codelearn.tareas.GestorTareasTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ gestor-tareas ---
+[INFO] Building jar: /home/ivan/Documentos/AED/gestor-tareas/target/gestor-tareas-1.0.0-SNAPSHOT.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  5.148 s
+[INFO] Finished at: 2026-09-22T23:50:29+01:00
+[INFO] ------------------------------------------------------------------------
+```
++ Fallo de compilacion
+```
+ivan@debian-des:~/Documentos/AED/gestor-tareas$ mvn clean compile test
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< com.codelearn:gestor-tareas >---------------------
+[INFO] Building gestor-tareas 1.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ gestor-tareas ---
+[INFO] Deleting /home/ivan/Documentos/AED/gestor-tareas/target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ gestor-tareas ---
+[INFO] skip non existing resourceDirectory /home/ivan/Documentos/AED/gestor-tareas/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ gestor-tareas ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 2 source files with javac [debug release 21] to target/classes
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ gestor-tareas ---
+[INFO] skip non existing resourceDirectory /home/ivan/Documentos/AED/gestor-tareas/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ gestor-tareas ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ gestor-tareas ---
+[INFO] skip non existing resourceDirectory /home/ivan/Documentos/AED/gestor-tareas/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ gestor-tareas ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 1 source file with javac [debug release 21] to target/test-classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /home/ivan/Documentos/AED/gestor-tareas/src/test/java/com/codelearn/tareas/GestorTareasTest.java:[13,17] cannot find symbol
+  symbol:   variable textoNoExiste
+  location: class com.codelearn.tareas.GestorTareasTest
+[INFO] 1 error
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.791 s
+[INFO] Finished at: 2026-09-22T23:51:59+01:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:testCompile (default-testCompile) on project gestor-tareas: Compilation failure
+[ERROR] /home/ivan/Documentos/AED/gestor-tareas/src/test/java/com/codelearn/tareas/GestorTareasTest.java:[13,17] cannot find symbol
+[ERROR]   symbol:   variable textoNoExiste
+[ERROR]   location: class com.codelearn.tareas.GestorTareasTest
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+```
++ Fallo de asercion
+```
+INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.codelearn.tareas.GestorTareasTest
+[ERROR] Tests run: 4, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.123 s <<< FAILURE! -- in com.codelearn.tareas.GestorTareasTest
+[ERROR] com.codelearn.tareas.GestorTareasTest.anadeUnaTarea -- Time elapsed: 0.015 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <2> but was: <1>
+        at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+        at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+        at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+        at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+        at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
+        at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:531)
+        at com.codelearn.tareas.GestorTareasTest.anadeUnaTarea(GestorTareasTest.java:11)
+        at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+        at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+        at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[INFO] 
+[INFO] Results:
+[INFO] 
+[ERROR] Failures: 
+[ERROR]   GestorTareasTest.anadeUnaTarea:11 expected: <2> but was: <1>
+[INFO] 
+[ERROR] Tests run: 4, Failures: 1, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  4.343 s
+[INFO] Finished at: 2026-09-22T23:53:35+01:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.5.2:test (default-test) on project gestor-tareas: There are test failures.
+[ERROR] 
+[ERROR] See /home/ivan/Documentos/AED/gestor-tareas/target/surefire-reports for the individual test results.
+[ERROR] See dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+```
+
+## PARTE 15
+</file>
+
+<file path="pom.xml">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.codelearn</groupId>
+    <artifactId>gestor-tareas</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.release>21</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <gson.version>2.11.0</gson.version>
+        <junit.version>5.11.0</junit.version>
+        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+        <maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
+        <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
+        <maven-shade-plugin.version>3.6.0</maven-shade-plugin.version>
+        <maven-dependency-plugin.version>3.8.1</maven-dependency-plugin.version>
+        <maven-wrapper-plugin.version>3.3.2</maven-wrapper-plugin.version>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${gson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>${junit.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${maven-jar-plugin.version}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>${maven-dependency-plugin.version}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-wrapper-plugin</artifactId>
+                <version>${maven-wrapper-plugin.version}</version>
+            </plugin>
+        </plugins>
+    </build>
+    <profiles>
+        <profile>
+            <id>distribucion</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-shade-plugin</artifactId>
+                        <version>${maven-shade-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals><goal>shade</goal></goals>
+                                <configuration>
+                                    <shadedArtifactAttached>true</shadedArtifactAttached>
+                                    <shadedClassifierName>all</shadedClassifierName>
+                                    <createDependencyReducedPom>false</createDependencyReducedPom>
+                                    <transformers>
+                                        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                            <mainClass>com.codelearn.tareas.Main</mainClass>
+                                        </transformer>
+                                    </transformers>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>informe</id>
+            <activation>
+                <property>
+                    <name>informe</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <properties>
+                <maven.compiler.showWarnings>true</maven.compiler.showWarnings>
+            </properties>
+        </profile>
+    </profiles>
+</project>
+</file>
+
+</files>

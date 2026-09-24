@@ -1,0 +1,380 @@
+[1mApache Maven 3.9.9[m
+Maven home: /usr/share/maven
+Java version: 21.0.11, vendor: JetBrains s.r.o., runtime: /home/ivan/.jdks/jbr-21.0.11
+Default locale: es_ES, platform encoding: UTF-8
+OS name: "linux", version: "6.12.107+deb13-amd64", arch: "amd64", family: "unix"
+[[1;36mDEBUG[m] Created new class realm maven.api
+[[1;36mDEBUG[m] Importing foreign packages into class realm maven.api
+[[1;36mDEBUG[m]   Imported: javax.annotation.* < plexus.core
+[[1;36mDEBUG[m]   Imported: javax.annotation.security.* < plexus.core
+[[1;36mDEBUG[m]   Imported: javax.inject.* < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.* < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.artifact < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.classrealm < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.cli < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.configuration < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.exception < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.execution < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.execution.scope < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.graph < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.lifecycle < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.model < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.monitor < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.plugin < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.profiles < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.project < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.reporting < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.repository < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.rtinfo < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.settings < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.toolchain < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.usability < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.wagon.* < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.wagon.authentication < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.wagon.authorization < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.wagon.events < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.wagon.observers < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.wagon.proxy < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.wagon.repository < plexus.core
+[[1;36mDEBUG[m]   Imported: org.apache.maven.wagon.resource < plexus.core
+[[1;36mDEBUG[m]   Imported: org.codehaus.classworlds < plexus.core
+[[1;36mDEBUG[m]   Imported: org.codehaus.plexus.* < plexus.core
+[[1;36mDEBUG[m]   Imported: org.codehaus.plexus.classworlds < plexus.core
+[[1;36mDEBUG[m]   Imported: org.codehaus.plexus.component < plexus.core
+[[1;36mDEBUG[m]   Imported: org.codehaus.plexus.configuration < plexus.core
+[[1;36mDEBUG[m]   Imported: org.codehaus.plexus.container < plexus.core
+[[1;36mDEBUG[m]   Imported: org.codehaus.plexus.context < plexus.core
+[[1;36mDEBUG[m]   Imported: org.codehaus.plexus.lifecycle < plexus.core
+[[1;36mDEBUG[m]   Imported: org.codehaus.plexus.logging < plexus.core
+[[1;36mDEBUG[m]   Imported: org.codehaus.plexus.personality < plexus.core
+[[1;36mDEBUG[m]   Imported: org.codehaus.plexus.util.xml.Xpp3Dom < plexus.core
+[[1;36mDEBUG[m]   Imported: org.codehaus.plexus.util.xml.pull.XmlPullParser < plexus.core
+[[1;36mDEBUG[m]   Imported: org.codehaus.plexus.util.xml.pull.XmlPullParserException < plexus.core
+[[1;36mDEBUG[m]   Imported: org.codehaus.plexus.util.xml.pull.XmlSerializer < plexus.core
+[[1;36mDEBUG[m]   Imported: org.eclipse.aether.* < plexus.core
+[[1;36mDEBUG[m]   Imported: org.eclipse.aether.artifact < plexus.core
+[[1;36mDEBUG[m]   Imported: org.eclipse.aether.collection < plexus.core
+[[1;36mDEBUG[m]   Imported: org.eclipse.aether.deployment < plexus.core
+[[1;36mDEBUG[m]   Imported: org.eclipse.aether.graph < plexus.core
+[[1;36mDEBUG[m]   Imported: org.eclipse.aether.impl < plexus.core
+[[1;36mDEBUG[m]   Imported: org.eclipse.aether.installation < plexus.core
+[[1;36mDEBUG[m]   Imported: org.eclipse.aether.internal.impl < plexus.core
+[[1;36mDEBUG[m]   Imported: org.eclipse.aether.metadata < plexus.core
+[[1;36mDEBUG[m]   Imported: org.eclipse.aether.repository < plexus.core
+[[1;36mDEBUG[m]   Imported: org.eclipse.aether.resolution < plexus.core
+[[1;36mDEBUG[m]   Imported: org.eclipse.aether.spi < plexus.core
+[[1;36mDEBUG[m]   Imported: org.eclipse.aether.transfer < plexus.core
+[[1;36mDEBUG[m]   Imported: org.eclipse.aether.util < plexus.core
+[[1;36mDEBUG[m]   Imported: org.eclipse.aether.version < plexus.core
+[[1;36mDEBUG[m]   Imported: org.fusesource.jansi.* < plexus.core
+[[1;36mDEBUG[m]   Imported: org.slf4j.* < plexus.core
+[[1;36mDEBUG[m]   Imported: org.slf4j.event.* < plexus.core
+[[1;36mDEBUG[m]   Imported: org.slf4j.helpers.* < plexus.core
+[[1;36mDEBUG[m]   Imported: org.slf4j.spi.* < plexus.core
+[[1;36mDEBUG[m] Populating class realm maven.api
+[[1;36mDEBUG[m] Created adapter factory; available factories [file-lock, rwlock-local, semaphore-local, noop]; available name mappers [discriminating, file-gav, file-hgav, file-static, gav, static]
+[[1;34mINFO[m] Error stacktraces are turned on.
+[[1;36mDEBUG[m] Message scheme: color
+[[1;36mDEBUG[m] Message styles: [1;36mdebug[m [1;34minfo[m [1;33mwarning[m [1;31merror[m [1;32msuccess[m [1;31mfailure[m [1mstrong[m [32mmojo[m [36mproject[m
+[[1;36mDEBUG[m] Reading global settings from /usr/share/maven/conf/settings.xml
+[[1;36mDEBUG[m] Reading user settings from /home/ivan/.m2/settings-empresa.xml
+[[1;36mDEBUG[m] Reading global toolchains from /usr/share/maven/conf/toolchains.xml
+[[1;36mDEBUG[m] Reading user toolchains from /home/ivan/.m2/toolchains.xml
+[[1;36mDEBUG[m] Using local repository at /home/ivan/.m2/repository
+[[1;36mDEBUG[m] Using manager EnhancedLocalRepositoryManager with priority 10.0 for /home/ivan/.m2/repository
+[[1;34mINFO[m] Scanning for projects...
+[[1;36mDEBUG[m] Using mirror empresa (https://repo.empresa.example/repository/maven-public/) for central (https://repo.maven.apache.org/maven2).
+[[1;36mDEBUG[m] Extension realms for project com.codelearn:gestor-tareas:jar:1.0.0-SNAPSHOT: (none)
+[[1;36mDEBUG[m] Looking up lifecycle mappings for packaging jar from ClassRealm[plexus.core, parent: null]
+[[1;36mDEBUG[m] === REACTOR BUILD PLAN ================================================
+[[1;36mDEBUG[m] Project: com.codelearn:gestor-tareas:jar:1.0.0-SNAPSHOT
+[[1;36mDEBUG[m] Tasks:   [clean, verify]
+[[1;36mDEBUG[m] Style:   Regular
+[[1;36mDEBUG[m] =======================================================================
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--------------------< [0;36mcom.codelearn:gestor-tareas[0;1m >---------------------[m
+[[1;34mINFO[m] [1mBuilding gestor-tareas 1.0.0-SNAPSHOT[m
+[[1;34mINFO[m]   from pom.xml
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;36mDEBUG[m] Lifecycle clean -> [pre-clean, clean, post-clean]
+[[1;36mDEBUG[m] Lifecycle default -> [validate, initialize, generate-sources, process-sources, generate-resources, process-resources, compile, process-classes, generate-test-sources, process-test-sources, generate-test-resources, process-test-resources, test-compile, process-test-classes, test, prepare-package, package, pre-integration-test, integration-test, post-integration-test, verify, install, deploy]
+[[1;36mDEBUG[m] Lifecycle site -> [pre-site, site, post-site, site-deploy]
+[[1;36mDEBUG[m] Lifecycle clean -> [pre-clean, clean, post-clean]
+[[1;36mDEBUG[m] Lifecycle default -> [validate, initialize, generate-sources, process-sources, generate-resources, process-resources, compile, process-classes, generate-test-sources, process-test-sources, generate-test-resources, process-test-resources, test-compile, process-test-classes, test, prepare-package, package, pre-integration-test, integration-test, post-integration-test, verify, install, deploy]
+[[1;36mDEBUG[m] Lifecycle site -> [pre-site, site, post-site, site-deploy]
+[[1;36mDEBUG[m] Creating adapter using nameMapper 'gav' and factory 'rwlock-local'
+[[1;34mINFO[m] Artifact org.apache.maven.plugins:maven-clean-plugin:pom:3.2.0 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [empresa (https://repo.empresa.example/repository/maven-public/, default, releases)]
+[[1;36mDEBUG[m] Resolving artifact org.apache.maven.plugins:maven-clean-plugin:pom:3.2.0 from [empresa (https://repo.empresa.example/repository/maven-public/, default, releases)]
+[[1;34mINFO[m] Artifact org.apache.maven.plugins:maven-clean-plugin:pom:3.2.0 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [empresa (https://repo.empresa.example/repository/maven-public/, default, releases)]
+[[1;36mDEBUG[m] Resolving artifact org.apache.maven.plugins:maven-clean-plugin:pom:3.2.0 from [empresa (https://repo.empresa.example/repository/maven-public/, default, releases)]
+[[1;36mDEBUG[m] Using transporter WagonTransporter with priority -1.0 for https://repo.empresa.example/repository/maven-public/
+[[1;36mDEBUG[m] Using connector BasicRepositoryConnector with priority 0.0 for https://repo.empresa.example/repository/maven-public/ with username=ivan, password=***
+[90mDownloading from [0mempresa[90m: https://repo.empresa.example/repository/maven-public/[0morg/apache/maven/plugins/maven-clean-plugin/3.2.0/maven-clean-plugin-3.2.0.pom
+[[1;36mDEBUG[m] Writing tracking file '/home/ivan/.m2/repository/org/apache/maven/plugins/maven-clean-plugin/3.2.0/maven-clean-plugin-3.2.0.pom.lastUpdated'
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;31mBUILD FAILURE[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  0.773 s
+[[1;34mINFO[m] Finished at: 2026-09-22T22:59:55+01:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;31mERROR[m] Plugin org.apache.maven.plugins:maven-clean-plugin:3.2.0 or one of its dependencies could not be resolved:
+[[1;31mERROR[m] 	The following artifacts could not be resolved: org.apache.maven.plugins:maven-clean-plugin:pom:3.2.0 (present, but unavailable): Could not transfer artifact org.apache.maven.plugins:maven-clean-plugin:pom:3.2.0 from/to empresa (https://repo.empresa.example/repository/maven-public/): transfer failed for https://repo.empresa.example/repository/maven-public/org/apache/maven/plugins/maven-clean-plugin/3.2.0/maven-clean-plugin-3.2.0.pom: Failed to read artifact descriptor for org.apache.maven.plugins:maven-clean-plugin:jar:3.2.0: Unknown host repo.empresa.example: Nombre o servicio desconocido
+[[1;31mERROR[m] -> [1m[Help 1][m
+[1;31morg.apache.maven.plugin.PluginResolutionException[m: [1;31mPlugin org.apache.maven.plugins:maven-clean-plugin:3.2.0 or one of its dependencies could not be resolved:
+	The following artifacts could not be resolved: org.apache.maven.plugins:maven-clean-plugin:pom:3.2.0 (present, but unavailable): Could not transfer artifact org.apache.maven.plugins:maven-clean-plugin:pom:3.2.0 from/to empresa (https://repo.empresa.example/repository/maven-public/): transfer failed for https://repo.empresa.example/repository/maven-public/org/apache/maven/plugins/maven-clean-plugin/3.2.0/maven-clean-plugin-3.2.0.pom
+[m
+    [1mat[m org.apache.maven.plugin.internal.DefaultPluginDependenciesResolver.resolve ([1mDefaultPluginDependenciesResolver.java:135[m)
+    [1mat[m org.apache.maven.plugin.internal.DefaultMavenPluginManager.lambda$getPluginDescriptor$0 ([1mDefaultMavenPluginManager.java:183[m)
+    [1mat[m org.apache.maven.plugin.DefaultPluginDescriptorCache.lambda$get$0 ([1mDefaultPluginDescriptorCache.java:72[m)
+    [1mat[m java.util.concurrent.ConcurrentHashMap.computeIfAbsent ([1mConcurrentHashMap.java:1708[m)
+    [1mat[m org.apache.maven.plugin.DefaultPluginDescriptorCache.get ([1mDefaultPluginDescriptorCache.java:70[m)
+    [1mat[m org.apache.maven.plugin.internal.DefaultMavenPluginManager.getPluginDescriptor ([1mDefaultMavenPluginManager.java:181[m)
+    [1mat[m org.apache.maven.plugin.internal.DefaultMavenPluginManager.getMojoDescriptor ([1mDefaultMavenPluginManager.java:271[m)
+    [1mat[m org.apache.maven.plugin.DefaultBuildPluginManager.getMojoDescriptor ([1mDefaultBuildPluginManager.java:214[m)
+    [1mat[m org.apache.maven.lifecycle.internal.DefaultLifecycleExecutionPlanCalculator.setupMojoExecution ([1mDefaultLifecycleExecutionPlanCalculator.java:155[m)
+    [1mat[m org.apache.maven.lifecycle.internal.DefaultLifecycleExecutionPlanCalculator.setupMojoExecutions ([1mDefaultLifecycleExecutionPlanCalculator.java:143[m)
+    [1mat[m org.apache.maven.lifecycle.internal.DefaultLifecycleExecutionPlanCalculator.calculateExecutionPlan ([1mDefaultLifecycleExecutionPlanCalculator.java:122[m)
+    [1mat[m org.apache.maven.lifecycle.internal.DefaultLifecycleExecutionPlanCalculator.calculateExecutionPlan ([1mDefaultLifecycleExecutionPlanCalculator.java:135[m)
+    [1mat[m org.apache.maven.lifecycle.internal.builder.BuilderCommon.resolveBuildPlan ([1mBuilderCommon.java:93[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject ([1mLifecycleModuleBuilder.java:100[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject ([1mLifecycleModuleBuilder.java:73[m)
+    [1mat[m org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build ([1mSingleThreadedBuilder.java:53[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleStarter.execute ([1mLifecycleStarter.java:118[m)
+    [1mat[m org.apache.maven.DefaultMaven.doExecute ([1mDefaultMaven.java:261[m)
+    [1mat[m org.apache.maven.DefaultMaven.doExecute ([1mDefaultMaven.java:173[m)
+    [1mat[m org.apache.maven.DefaultMaven.execute ([1mDefaultMaven.java:101[m)
+    [1mat[m org.apache.maven.cli.MavenCli.execute ([1mMavenCli.java:906[m)
+    [1mat[m org.apache.maven.cli.MavenCli.doMain ([1mMavenCli.java:283[m)
+    [1mat[m org.apache.maven.cli.MavenCli.main ([1mMavenCli.java:206[m)
+    [1mat[m jdk.internal.reflect.DirectMethodHandleAccessor.invoke ([1mDirectMethodHandleAccessor.java:103[m)
+    [1mat[m java.lang.reflect.Method.invoke ([1mMethod.java:580[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced ([1mLauncher.java:283[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.launch ([1mLauncher.java:226[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode ([1mLauncher.java:407[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.main ([1mLauncher.java:348[m)
+[1mCaused by[m: org.eclipse.aether.resolution.ArtifactDescriptorException: [1;31mFailed to read artifact descriptor for org.apache.maven.plugins:maven-clean-plugin:jar:3.2.0[m
+    [1mat[m org.apache.maven.repository.internal.DefaultArtifactDescriptorReader.loadPom ([1mDefaultArtifactDescriptorReader.java:254[m)
+    [1mat[m org.apache.maven.repository.internal.DefaultArtifactDescriptorReader.readArtifactDescriptor ([1mDefaultArtifactDescriptorReader.java:183[m)
+    [1mat[m org.eclipse.aether.internal.impl.DefaultRepositorySystem.readArtifactDescriptor ([1mDefaultRepositorySystem.java:269[m)
+    [1mat[m org.apache.maven.plugin.internal.DefaultPluginDependenciesResolver.resolve ([1mDefaultPluginDependenciesResolver.java:109[m)
+    [1mat[m org.apache.maven.plugin.internal.DefaultMavenPluginManager.lambda$getPluginDescriptor$0 ([1mDefaultMavenPluginManager.java:183[m)
+    [1mat[m org.apache.maven.plugin.DefaultPluginDescriptorCache.lambda$get$0 ([1mDefaultPluginDescriptorCache.java:72[m)
+    [1mat[m java.util.concurrent.ConcurrentHashMap.computeIfAbsent ([1mConcurrentHashMap.java:1708[m)
+    [1mat[m org.apache.maven.plugin.DefaultPluginDescriptorCache.get ([1mDefaultPluginDescriptorCache.java:70[m)
+    [1mat[m org.apache.maven.plugin.internal.DefaultMavenPluginManager.getPluginDescriptor ([1mDefaultMavenPluginManager.java:181[m)
+    [1mat[m org.apache.maven.plugin.internal.DefaultMavenPluginManager.getMojoDescriptor ([1mDefaultMavenPluginManager.java:271[m)
+    [1mat[m org.apache.maven.plugin.DefaultBuildPluginManager.getMojoDescriptor ([1mDefaultBuildPluginManager.java:214[m)
+    [1mat[m org.apache.maven.lifecycle.internal.DefaultLifecycleExecutionPlanCalculator.setupMojoExecution ([1mDefaultLifecycleExecutionPlanCalculator.java:155[m)
+    [1mat[m org.apache.maven.lifecycle.internal.DefaultLifecycleExecutionPlanCalculator.setupMojoExecutions ([1mDefaultLifecycleExecutionPlanCalculator.java:143[m)
+    [1mat[m org.apache.maven.lifecycle.internal.DefaultLifecycleExecutionPlanCalculator.calculateExecutionPlan ([1mDefaultLifecycleExecutionPlanCalculator.java:122[m)
+    [1mat[m org.apache.maven.lifecycle.internal.DefaultLifecycleExecutionPlanCalculator.calculateExecutionPlan ([1mDefaultLifecycleExecutionPlanCalculator.java:135[m)
+    [1mat[m org.apache.maven.lifecycle.internal.builder.BuilderCommon.resolveBuildPlan ([1mBuilderCommon.java:93[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject ([1mLifecycleModuleBuilder.java:100[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject ([1mLifecycleModuleBuilder.java:73[m)
+    [1mat[m org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build ([1mSingleThreadedBuilder.java:53[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleStarter.execute ([1mLifecycleStarter.java:118[m)
+    [1mat[m org.apache.maven.DefaultMaven.doExecute ([1mDefaultMaven.java:261[m)
+    [1mat[m org.apache.maven.DefaultMaven.doExecute ([1mDefaultMaven.java:173[m)
+    [1mat[m org.apache.maven.DefaultMaven.execute ([1mDefaultMaven.java:101[m)
+    [1mat[m org.apache.maven.cli.MavenCli.execute ([1mMavenCli.java:906[m)
+    [1mat[m org.apache.maven.cli.MavenCli.doMain ([1mMavenCli.java:283[m)
+    [1mat[m org.apache.maven.cli.MavenCli.main ([1mMavenCli.java:206[m)
+    [1mat[m jdk.internal.reflect.DirectMethodHandleAccessor.invoke ([1mDirectMethodHandleAccessor.java:103[m)
+    [1mat[m java.lang.reflect.Method.invoke ([1mMethod.java:580[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced ([1mLauncher.java:283[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.launch ([1mLauncher.java:226[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode ([1mLauncher.java:407[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.main ([1mLauncher.java:348[m)
+[1mCaused by[m: org.eclipse.aether.resolution.ArtifactResolutionException: [1;31mThe following artifacts could not be resolved: org.apache.maven.plugins:maven-clean-plugin:pom:3.2.0 (present, but unavailable): Could not transfer artifact org.apache.maven.plugins:maven-clean-plugin:pom:3.2.0 from/to empresa (https://repo.empresa.example/repository/maven-public/): transfer failed for https://repo.empresa.example/repository/maven-public/org/apache/maven/plugins/maven-clean-plugin/3.2.0/maven-clean-plugin-3.2.0.pom[m
+    [1mat[m org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolve ([1mDefaultArtifactResolver.java:473[m)
+    [1mat[m org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolveArtifacts ([1mDefaultArtifactResolver.java:261[m)
+    [1mat[m org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolveArtifact ([1mDefaultArtifactResolver.java:243[m)
+    [1mat[m org.apache.maven.repository.internal.DefaultArtifactDescriptorReader.loadPom ([1mDefaultArtifactDescriptorReader.java:243[m)
+    [1mat[m org.apache.maven.repository.internal.DefaultArtifactDescriptorReader.readArtifactDescriptor ([1mDefaultArtifactDescriptorReader.java:183[m)
+    [1mat[m org.eclipse.aether.internal.impl.DefaultRepositorySystem.readArtifactDescriptor ([1mDefaultRepositorySystem.java:269[m)
+    [1mat[m org.apache.maven.plugin.internal.DefaultPluginDependenciesResolver.resolve ([1mDefaultPluginDependenciesResolver.java:109[m)
+    [1mat[m org.apache.maven.plugin.internal.DefaultMavenPluginManager.lambda$getPluginDescriptor$0 ([1mDefaultMavenPluginManager.java:183[m)
+    [1mat[m org.apache.maven.plugin.DefaultPluginDescriptorCache.lambda$get$0 ([1mDefaultPluginDescriptorCache.java:72[m)
+    [1mat[m java.util.concurrent.ConcurrentHashMap.computeIfAbsent ([1mConcurrentHashMap.java:1708[m)
+    [1mat[m org.apache.maven.plugin.DefaultPluginDescriptorCache.get ([1mDefaultPluginDescriptorCache.java:70[m)
+    [1mat[m org.apache.maven.plugin.internal.DefaultMavenPluginManager.getPluginDescriptor ([1mDefaultMavenPluginManager.java:181[m)
+    [1mat[m org.apache.maven.plugin.internal.DefaultMavenPluginManager.getMojoDescriptor ([1mDefaultMavenPluginManager.java:271[m)
+    [1mat[m org.apache.maven.plugin.DefaultBuildPluginManager.getMojoDescriptor ([1mDefaultBuildPluginManager.java:214[m)
+    [1mat[m org.apache.maven.lifecycle.internal.DefaultLifecycleExecutionPlanCalculator.setupMojoExecution ([1mDefaultLifecycleExecutionPlanCalculator.java:155[m)
+    [1mat[m org.apache.maven.lifecycle.internal.DefaultLifecycleExecutionPlanCalculator.setupMojoExecutions ([1mDefaultLifecycleExecutionPlanCalculator.java:143[m)
+    [1mat[m org.apache.maven.lifecycle.internal.DefaultLifecycleExecutionPlanCalculator.calculateExecutionPlan ([1mDefaultLifecycleExecutionPlanCalculator.java:122[m)
+    [1mat[m org.apache.maven.lifecycle.internal.DefaultLifecycleExecutionPlanCalculator.calculateExecutionPlan ([1mDefaultLifecycleExecutionPlanCalculator.java:135[m)
+    [1mat[m org.apache.maven.lifecycle.internal.builder.BuilderCommon.resolveBuildPlan ([1mBuilderCommon.java:93[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject ([1mLifecycleModuleBuilder.java:100[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject ([1mLifecycleModuleBuilder.java:73[m)
+    [1mat[m org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build ([1mSingleThreadedBuilder.java:53[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleStarter.execute ([1mLifecycleStarter.java:118[m)
+    [1mat[m org.apache.maven.DefaultMaven.doExecute ([1mDefaultMaven.java:261[m)
+    [1mat[m org.apache.maven.DefaultMaven.doExecute ([1mDefaultMaven.java:173[m)
+    [1mat[m org.apache.maven.DefaultMaven.execute ([1mDefaultMaven.java:101[m)
+    [1mat[m org.apache.maven.cli.MavenCli.execute ([1mMavenCli.java:906[m)
+    [1mat[m org.apache.maven.cli.MavenCli.doMain ([1mMavenCli.java:283[m)
+    [1mat[m org.apache.maven.cli.MavenCli.main ([1mMavenCli.java:206[m)
+    [1mat[m jdk.internal.reflect.DirectMethodHandleAccessor.invoke ([1mDirectMethodHandleAccessor.java:103[m)
+    [1mat[m java.lang.reflect.Method.invoke ([1mMethod.java:580[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced ([1mLauncher.java:283[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.launch ([1mLauncher.java:226[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode ([1mLauncher.java:407[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.main ([1mLauncher.java:348[m)
+[1mCaused by[m: org.eclipse.aether.transfer.ArtifactTransferException: [1;31mCould not transfer artifact org.apache.maven.plugins:maven-clean-plugin:pom:3.2.0 from/to empresa (https://repo.empresa.example/repository/maven-public/): transfer failed for https://repo.empresa.example/repository/maven-public/org/apache/maven/plugins/maven-clean-plugin/3.2.0/maven-clean-plugin-3.2.0.pom[m
+    [1mat[m org.eclipse.aether.connector.basic.ArtifactTransportListener.transferFailed ([1mArtifactTransportListener.java:44[m)
+    [1mat[m org.eclipse.aether.connector.basic.BasicRepositoryConnector$TaskRunner.run ([1mBasicRepositoryConnector.java:417[m)
+    [1mat[m org.eclipse.aether.connector.basic.BasicRepositoryConnector.get ([1mBasicRepositoryConnector.java:260[m)
+    [1mat[m org.eclipse.aether.internal.impl.DefaultArtifactResolver.performDownloads ([1mDefaultArtifactResolver.java:537[m)
+    [1mat[m org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolve ([1mDefaultArtifactResolver.java:449[m)
+    [1mat[m org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolveArtifacts ([1mDefaultArtifactResolver.java:261[m)
+    [1mat[m org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolveArtifact ([1mDefaultArtifactResolver.java:243[m)
+    [1mat[m org.apache.maven.repository.internal.DefaultArtifactDescriptorReader.loadPom ([1mDefaultArtifactDescriptorReader.java:243[m)
+    [1mat[m org.apache.maven.repository.internal.DefaultArtifactDescriptorReader.readArtifactDescriptor ([1mDefaultArtifactDescriptorReader.java:183[m)
+    [1mat[m org.eclipse.aether.internal.impl.DefaultRepositorySystem.readArtifactDescriptor ([1mDefaultRepositorySystem.java:269[m)
+    [1mat[m org.apache.maven.plugin.internal.DefaultPluginDependenciesResolver.resolve ([1mDefaultPluginDependenciesResolver.java:109[m)
+    [1mat[m org.apache.maven.plugin.internal.DefaultMavenPluginManager.lambda$getPluginDescriptor$0 ([1mDefaultMavenPluginManager.java:183[m)
+    [1mat[m org.apache.maven.plugin.DefaultPluginDescriptorCache.lambda$get$0 ([1mDefaultPluginDescriptorCache.java:72[m)
+    [1mat[m java.util.concurrent.ConcurrentHashMap.computeIfAbsent ([1mConcurrentHashMap.java:1708[m)
+    [1mat[m org.apache.maven.plugin.DefaultPluginDescriptorCache.get ([1mDefaultPluginDescriptorCache.java:70[m)
+    [1mat[m org.apache.maven.plugin.internal.DefaultMavenPluginManager.getPluginDescriptor ([1mDefaultMavenPluginManager.java:181[m)
+    [1mat[m org.apache.maven.plugin.internal.DefaultMavenPluginManager.getMojoDescriptor ([1mDefaultMavenPluginManager.java:271[m)
+    [1mat[m org.apache.maven.plugin.DefaultBuildPluginManager.getMojoDescriptor ([1mDefaultBuildPluginManager.java:214[m)
+    [1mat[m org.apache.maven.lifecycle.internal.DefaultLifecycleExecutionPlanCalculator.setupMojoExecution ([1mDefaultLifecycleExecutionPlanCalculator.java:155[m)
+    [1mat[m org.apache.maven.lifecycle.internal.DefaultLifecycleExecutionPlanCalculator.setupMojoExecutions ([1mDefaultLifecycleExecutionPlanCalculator.java:143[m)
+    [1mat[m org.apache.maven.lifecycle.internal.DefaultLifecycleExecutionPlanCalculator.calculateExecutionPlan ([1mDefaultLifecycleExecutionPlanCalculator.java:122[m)
+    [1mat[m org.apache.maven.lifecycle.internal.DefaultLifecycleExecutionPlanCalculator.calculateExecutionPlan ([1mDefaultLifecycleExecutionPlanCalculator.java:135[m)
+    [1mat[m org.apache.maven.lifecycle.internal.builder.BuilderCommon.resolveBuildPlan ([1mBuilderCommon.java:93[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject ([1mLifecycleModuleBuilder.java:100[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject ([1mLifecycleModuleBuilder.java:73[m)
+    [1mat[m org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build ([1mSingleThreadedBuilder.java:53[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleStarter.execute ([1mLifecycleStarter.java:118[m)
+    [1mat[m org.apache.maven.DefaultMaven.doExecute ([1mDefaultMaven.java:261[m)
+    [1mat[m org.apache.maven.DefaultMaven.doExecute ([1mDefaultMaven.java:173[m)
+    [1mat[m org.apache.maven.DefaultMaven.execute ([1mDefaultMaven.java:101[m)
+    [1mat[m org.apache.maven.cli.MavenCli.execute ([1mMavenCli.java:906[m)
+    [1mat[m org.apache.maven.cli.MavenCli.doMain ([1mMavenCli.java:283[m)
+    [1mat[m org.apache.maven.cli.MavenCli.main ([1mMavenCli.java:206[m)
+    [1mat[m jdk.internal.reflect.DirectMethodHandleAccessor.invoke ([1mDirectMethodHandleAccessor.java:103[m)
+    [1mat[m java.lang.reflect.Method.invoke ([1mMethod.java:580[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced ([1mLauncher.java:283[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.launch ([1mLauncher.java:226[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode ([1mLauncher.java:407[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.main ([1mLauncher.java:348[m)
+[1mCaused by[m: org.apache.maven.wagon.TransferFailedException: [1;31mtransfer failed for https://repo.empresa.example/repository/maven-public/org/apache/maven/plugins/maven-clean-plugin/3.2.0/maven-clean-plugin-3.2.0.pom[m
+    [1mat[m org.apache.maven.wagon.shared.http.AbstractHttpClientWagon.resourceExists ([1mAbstractHttpClientWagon.java:926[m)
+    [1mat[m org.apache.maven.wagon.shared.http.AbstractHttpClientWagon.resourceExists ([1mAbstractHttpClientWagon.java:869[m)
+    [1mat[m org.eclipse.aether.transport.wagon.WagonTransporter$PeekTaskRunner.run ([1mWagonTransporter.java:406[m)
+    [1mat[m org.eclipse.aether.transport.wagon.WagonTransporter.execute ([1mWagonTransporter.java:367[m)
+    [1mat[m org.eclipse.aether.transport.wagon.WagonTransporter.peek ([1mWagonTransporter.java:343[m)
+    [1mat[m org.eclipse.aether.connector.basic.BasicRepositoryConnector$PeekTaskRunner.runTask ([1mBasicRepositoryConnector.java:432[m)
+    [1mat[m org.eclipse.aether.connector.basic.BasicRepositoryConnector$TaskRunner.run ([1mBasicRepositoryConnector.java:414[m)
+    [1mat[m org.eclipse.aether.connector.basic.BasicRepositoryConnector.get ([1mBasicRepositoryConnector.java:260[m)
+    [1mat[m org.eclipse.aether.internal.impl.DefaultArtifactResolver.performDownloads ([1mDefaultArtifactResolver.java:537[m)
+    [1mat[m org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolve ([1mDefaultArtifactResolver.java:449[m)
+    [1mat[m org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolveArtifacts ([1mDefaultArtifactResolver.java:261[m)
+    [1mat[m org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolveArtifact ([1mDefaultArtifactResolver.java:243[m)
+    [1mat[m org.apache.maven.repository.internal.DefaultArtifactDescriptorReader.loadPom ([1mDefaultArtifactDescriptorReader.java:243[m)
+    [1mat[m org.apache.maven.repository.internal.DefaultArtifactDescriptorReader.readArtifactDescriptor ([1mDefaultArtifactDescriptorReader.java:183[m)
+    [1mat[m org.eclipse.aether.internal.impl.DefaultRepositorySystem.readArtifactDescriptor ([1mDefaultRepositorySystem.java:269[m)
+    [1mat[m org.apache.maven.plugin.internal.DefaultPluginDependenciesResolver.resolve ([1mDefaultPluginDependenciesResolver.java:109[m)
+    [1mat[m org.apache.maven.plugin.internal.DefaultMavenPluginManager.lambda$getPluginDescriptor$0 ([1mDefaultMavenPluginManager.java:183[m)
+    [1mat[m org.apache.maven.plugin.DefaultPluginDescriptorCache.lambda$get$0 ([1mDefaultPluginDescriptorCache.java:72[m)
+    [1mat[m java.util.concurrent.ConcurrentHashMap.computeIfAbsent ([1mConcurrentHashMap.java:1708[m)
+    [1mat[m org.apache.maven.plugin.DefaultPluginDescriptorCache.get ([1mDefaultPluginDescriptorCache.java:70[m)
+    [1mat[m org.apache.maven.plugin.internal.DefaultMavenPluginManager.getPluginDescriptor ([1mDefaultMavenPluginManager.java:181[m)
+    [1mat[m org.apache.maven.plugin.internal.DefaultMavenPluginManager.getMojoDescriptor ([1mDefaultMavenPluginManager.java:271[m)
+    [1mat[m org.apache.maven.plugin.DefaultBuildPluginManager.getMojoDescriptor ([1mDefaultBuildPluginManager.java:214[m)
+    [1mat[m org.apache.maven.lifecycle.internal.DefaultLifecycleExecutionPlanCalculator.setupMojoExecution ([1mDefaultLifecycleExecutionPlanCalculator.java:155[m)
+    [1mat[m org.apache.maven.lifecycle.internal.DefaultLifecycleExecutionPlanCalculator.setupMojoExecutions ([1mDefaultLifecycleExecutionPlanCalculator.java:143[m)
+    [1mat[m org.apache.maven.lifecycle.internal.DefaultLifecycleExecutionPlanCalculator.calculateExecutionPlan ([1mDefaultLifecycleExecutionPlanCalculator.java:122[m)
+    [1mat[m org.apache.maven.lifecycle.internal.DefaultLifecycleExecutionPlanCalculator.calculateExecutionPlan ([1mDefaultLifecycleExecutionPlanCalculator.java:135[m)
+    [1mat[m org.apache.maven.lifecycle.internal.builder.BuilderCommon.resolveBuildPlan ([1mBuilderCommon.java:93[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject ([1mLifecycleModuleBuilder.java:100[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject ([1mLifecycleModuleBuilder.java:73[m)
+    [1mat[m org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build ([1mSingleThreadedBuilder.java:53[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleStarter.execute ([1mLifecycleStarter.java:118[m)
+    [1mat[m org.apache.maven.DefaultMaven.doExecute ([1mDefaultMaven.java:261[m)
+    [1mat[m org.apache.maven.DefaultMaven.doExecute ([1mDefaultMaven.java:173[m)
+    [1mat[m org.apache.maven.DefaultMaven.execute ([1mDefaultMaven.java:101[m)
+    [1mat[m org.apache.maven.cli.MavenCli.execute ([1mMavenCli.java:906[m)
+    [1mat[m org.apache.maven.cli.MavenCli.doMain ([1mMavenCli.java:283[m)
+    [1mat[m org.apache.maven.cli.MavenCli.main ([1mMavenCli.java:206[m)
+    [1mat[m jdk.internal.reflect.DirectMethodHandleAccessor.invoke ([1mDirectMethodHandleAccessor.java:103[m)
+    [1mat[m java.lang.reflect.Method.invoke ([1mMethod.java:580[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced ([1mLauncher.java:283[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.launch ([1mLauncher.java:226[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode ([1mLauncher.java:407[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.main ([1mLauncher.java:348[m)
+[1mCaused by[m: java.net.UnknownHostException: [1;31mrepo.empresa.example: Nombre o servicio desconocido[m
+    [1mat[m java.net.Inet6AddressImpl.lookupAllHostAddr ([1mNative Method[m)
+    [1mat[m java.net.Inet6AddressImpl.lookupAllHostAddr ([1mInet6AddressImpl.java:52[m)
+    [1mat[m java.net.InetAddress$PlatformResolver.lookupByName ([1mInetAddress.java:1211[m)
+    [1mat[m java.net.InetAddress.getAddressesFromNameService ([1mInetAddress.java:1828[m)
+    [1mat[m java.net.InetAddress$NameServiceAddresses.get ([1mInetAddress.java:1139[m)
+    [1mat[m java.net.InetAddress.getAllByName0 ([1mInetAddress.java:1818[m)
+    [1mat[m java.net.InetAddress.getAllByName ([1mInetAddress.java:1688[m)
+    [1mat[m org.apache.http.impl.conn.SystemDefaultDnsResolver.resolve ([1mSystemDefaultDnsResolver.java:45[m)
+    [1mat[m org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect ([1mDefaultHttpClientConnectionOperator.java:113[m)
+    [1mat[m org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect ([1mPoolingHttpClientConnectionManager.java:376[m)
+    [1mat[m org.apache.http.impl.execchain.MainClientExec.establishRoute ([1mMainClientExec.java:393[m)
+    [1mat[m org.apache.http.impl.execchain.MainClientExec.execute ([1mMainClientExec.java:236[m)
+    [1mat[m org.apache.http.impl.execchain.ProtocolExec.execute ([1mProtocolExec.java:186[m)
+    [1mat[m org.apache.http.impl.execchain.RetryExec.execute ([1mRetryExec.java:89[m)
+    [1mat[m org.apache.http.impl.execchain.RedirectExec.execute ([1mRedirectExec.java:110[m)
+    [1mat[m org.apache.http.impl.client.InternalHttpClient.doExecute ([1mInternalHttpClient.java:185[m)
+    [1mat[m org.apache.http.impl.client.CloseableHttpClient.execute ([1mCloseableHttpClient.java:83[m)
+    [1mat[m org.apache.maven.wagon.shared.http.AbstractHttpClientWagon.execute ([1mAbstractHttpClientWagon.java:1005[m)
+    [1mat[m org.apache.maven.wagon.shared.http.AbstractHttpClientWagon.resourceExists ([1mAbstractHttpClientWagon.java:880[m)
+    [1mat[m org.apache.maven.wagon.shared.http.AbstractHttpClientWagon.resourceExists ([1mAbstractHttpClientWagon.java:869[m)
+    [1mat[m org.eclipse.aether.transport.wagon.WagonTransporter$PeekTaskRunner.run ([1mWagonTransporter.java:406[m)
+    [1mat[m org.eclipse.aether.transport.wagon.WagonTransporter.execute ([1mWagonTransporter.java:367[m)
+    [1mat[m org.eclipse.aether.transport.wagon.WagonTransporter.peek ([1mWagonTransporter.java:343[m)
+    [1mat[m org.eclipse.aether.connector.basic.BasicRepositoryConnector$PeekTaskRunner.runTask ([1mBasicRepositoryConnector.java:432[m)
+    [1mat[m org.eclipse.aether.connector.basic.BasicRepositoryConnector$TaskRunner.run ([1mBasicRepositoryConnector.java:414[m)
+    [1mat[m org.eclipse.aether.connector.basic.BasicRepositoryConnector.get ([1mBasicRepositoryConnector.java:260[m)
+    [1mat[m org.eclipse.aether.internal.impl.DefaultArtifactResolver.performDownloads ([1mDefaultArtifactResolver.java:537[m)
+    [1mat[m org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolve ([1mDefaultArtifactResolver.java:449[m)
+    [1mat[m org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolveArtifacts ([1mDefaultArtifactResolver.java:261[m)
+    [1mat[m org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolveArtifact ([1mDefaultArtifactResolver.java:243[m)
+    [1mat[m org.apache.maven.repository.internal.DefaultArtifactDescriptorReader.loadPom ([1mDefaultArtifactDescriptorReader.java:243[m)
+    [1mat[m org.apache.maven.repository.internal.DefaultArtifactDescriptorReader.readArtifactDescriptor ([1mDefaultArtifactDescriptorReader.java:183[m)
+    [1mat[m org.eclipse.aether.internal.impl.DefaultRepositorySystem.readArtifactDescriptor ([1mDefaultRepositorySystem.java:269[m)
+    [1mat[m org.apache.maven.plugin.internal.DefaultPluginDependenciesResolver.resolve ([1mDefaultPluginDependenciesResolver.java:109[m)
+    [1mat[m org.apache.maven.plugin.internal.DefaultMavenPluginManager.lambda$getPluginDescriptor$0 ([1mDefaultMavenPluginManager.java:183[m)
+    [1mat[m org.apache.maven.plugin.DefaultPluginDescriptorCache.lambda$get$0 ([1mDefaultPluginDescriptorCache.java:72[m)
+    [1mat[m java.util.concurrent.ConcurrentHashMap.computeIfAbsent ([1mConcurrentHashMap.java:1708[m)
+    [1mat[m org.apache.maven.plugin.DefaultPluginDescriptorCache.get ([1mDefaultPluginDescriptorCache.java:70[m)
+    [1mat[m org.apache.maven.plugin.internal.DefaultMavenPluginManager.getPluginDescriptor ([1mDefaultMavenPluginManager.java:181[m)
+    [1mat[m org.apache.maven.plugin.internal.DefaultMavenPluginManager.getMojoDescriptor ([1mDefaultMavenPluginManager.java:271[m)
+    [1mat[m org.apache.maven.plugin.DefaultBuildPluginManager.getMojoDescriptor ([1mDefaultBuildPluginManager.java:214[m)
+    [1mat[m org.apache.maven.lifecycle.internal.DefaultLifecycleExecutionPlanCalculator.setupMojoExecution ([1mDefaultLifecycleExecutionPlanCalculator.java:155[m)
+    [1mat[m org.apache.maven.lifecycle.internal.DefaultLifecycleExecutionPlanCalculator.setupMojoExecutions ([1mDefaultLifecycleExecutionPlanCalculator.java:143[m)
+    [1mat[m org.apache.maven.lifecycle.internal.DefaultLifecycleExecutionPlanCalculator.calculateExecutionPlan ([1mDefaultLifecycleExecutionPlanCalculator.java:122[m)
+    [1mat[m org.apache.maven.lifecycle.internal.DefaultLifecycleExecutionPlanCalculator.calculateExecutionPlan ([1mDefaultLifecycleExecutionPlanCalculator.java:135[m)
+    [1mat[m org.apache.maven.lifecycle.internal.builder.BuilderCommon.resolveBuildPlan ([1mBuilderCommon.java:93[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject ([1mLifecycleModuleBuilder.java:100[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject ([1mLifecycleModuleBuilder.java:73[m)
+    [1mat[m org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build ([1mSingleThreadedBuilder.java:53[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleStarter.execute ([1mLifecycleStarter.java:118[m)
+    [1mat[m org.apache.maven.DefaultMaven.doExecute ([1mDefaultMaven.java:261[m)
+    [1mat[m org.apache.maven.DefaultMaven.doExecute ([1mDefaultMaven.java:173[m)
+    [1mat[m org.apache.maven.DefaultMaven.execute ([1mDefaultMaven.java:101[m)
+    [1mat[m org.apache.maven.cli.MavenCli.execute ([1mMavenCli.java:906[m)
+    [1mat[m org.apache.maven.cli.MavenCli.doMain ([1mMavenCli.java:283[m)
+    [1mat[m org.apache.maven.cli.MavenCli.main ([1mMavenCli.java:206[m)
+    [1mat[m jdk.internal.reflect.DirectMethodHandleAccessor.invoke ([1mDirectMethodHandleAccessor.java:103[m)
+    [1mat[m java.lang.reflect.Method.invoke ([1mMethod.java:580[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced ([1mLauncher.java:283[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.launch ([1mLauncher.java:226[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode ([1mLauncher.java:407[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.main ([1mLauncher.java:348[m)
+[[1;31mERROR[m] 
+[[1;31mERROR[m] 
+[[1;31mERROR[m] For more information about the errors and possible solutions, please read the following articles:
+[[1;31mERROR[m] [1m[Help 1][m http://cwiki.apache.org/confluence/display/MAVEN/PluginResolutionException
+[[1;36mDEBUG[m] Shutting down adapter factory; available factories [file-lock, rwlock-local, semaphore-local, noop]; available name mappers [discriminating, file-gav, file-hgav, file-static, gav, static]
+[[1;36mDEBUG[m] Shutting down 'file-lock' factory
+[[1;36mDEBUG[m] Shutting down 'rwlock-local' factory
+[[1;36mDEBUG[m] Shutting down 'semaphore-local' factory
+[[1;36mDEBUG[m] Shutting down 'noop' factory
