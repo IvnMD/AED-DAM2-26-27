@@ -1,6 +1,11 @@
 package com.docencia.sqlite;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +13,7 @@ public class ClienteSqliteRepository implements ClienteRepository {
     private final String url;
 
     public ClienteSqliteRepository(String databasePath) {
-        this.url = "jdbc:sqlite:" + databasePath;
+        this.url = "JDBC:sqlite:" + databasePath;
         crearTablaSiNoExiste();
     }
 
@@ -27,39 +32,112 @@ public class ClienteSqliteRepository implements ClienteRepository {
 
     @Override
     public Boolean save(Cliente cliente) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+        String sql = "INSERT INTO cliente (dni, nombre, email, ciudad) VALUES (?,?,?,?)";
+        try (Connection cn = getConnection();
+             PreparedStatement ps = cn.prepareStatement(sql)) {
+            ps.setString(1, cliente.getDni());
+            ps.setString(2, cliente.getNombre());
+            ps.setString(3, cliente.getEmail());
+            ps.setString(4, cliente.getCiudad());
+
+            return ps.executeUpdate() == 1;
+        } catch (Exception e) {
+            throw new RuntimeException();
+        }
     }
 
     @Override
     public Cliente findByDni(String dni) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByDni'");
+        String sql = "SELECT * FROM cliente where dni = ?";
+        try (Connection cn = getConnection();
+             PreparedStatement ps = cn.prepareStatement(sql)) {
+            ps.setString(1, dni);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return mapCliente(rs);
+                }
+            }
+            return null;
+        } catch (Exception e) {
+            throw new RuntimeException();
+        }
     }
 
     @Override
     public List<Cliente> findAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+
+        String sql = "SELECT * FROM cliente";
+        List<Cliente> clientes = new ArrayList<>();
+        try (Connection cn = getConnection();
+             PreparedStatement ps = cn.prepareStatement(sql)) {
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    clientes.add(mapCliente(rs));
+                }
+            }
+            return clientes;
+        } catch (Exception e) {
+            return new ArrayList<>();
+        }
     }
 
     @Override
     public Boolean update(Cliente cliente) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        String sql = "UPDATE cliente SET nombre = ?, email = ?, ciudad = ? WHERE dni = ?";
+        try (Connection cn = getConnection();
+             PreparedStatement ps = cn.prepareStatement(sql)) {
+
+            ps.setString(1, cliente.getNombre());
+            ps.setString(2, cliente.getEmail());
+            ps.setString(3, cliente.getCiudad());
+
+            ps.setString(4, cliente.getDni());
+
+            return ps.executeUpdate() == 1;
+        } catch (Exception e) {
+            throw new RuntimeException();
+        }
+
     }
 
     @Override
     public Boolean deleteByDni(String dni) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteByDni'");
+        String sql = "DELETE FROM cliente WHERE dni = ?";
+        try (Connection cn = getConnection();
+             PreparedStatement ps = cn.prepareStatement(sql)) {
+            ps.setString(1, dni);
+
+            return ps.executeUpdate() == 1;
+
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override
     public List<Cliente> findByCiudad(String ciudad) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByCiudad'");
+        String sql = "SELECT * FROM cliente WHERE ciudad = ?";
+        List<Cliente> clientes = new ArrayList<>();
+        try (Connection cn = getConnection();
+             PreparedStatement ps = cn.prepareStatement(sql)) {
+            ps.setString(1, ciudad);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    clientes.add(mapCliente(rs));
+                }
+                return clientes;
+            }
+        } catch (Exception e) {
+            return new ArrayList<>();
+        }
     }
 
-    
+    public Cliente mapCliente(ResultSet rs) throws Exception {
+        return new Cliente(
+                rs.getString("dni"),
+                rs.getString("nombre"),
+                rs.getString("email"),
+                rs.getString("ciudad"));
+
+    }
 }

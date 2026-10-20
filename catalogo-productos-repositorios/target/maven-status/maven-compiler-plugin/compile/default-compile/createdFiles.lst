@@ -1,0 +1,11 @@
+com/ejemplo/catalogo/repository/file/csv/JsonRepository$1.class
+com/ejemplo/catalogo/repository/file/csv/IRepository.class
+com/ejemplo/catalogo/repository/file/csv/XmlRepository.class
+com/ejemplo/catalogo/model/Producto.class
+com/ejemplo/catalogo/repository/file/csv/AbstractRepository.class
+com/ejemplo/catalogo/repository/file/csv/CsvRepository.class
+CsvCrudDemo.class
+com/ejemplo/catalogo/model/ProductosXml.class
+CsvCrudDemo$Producto.class
+com/ejemplo/catalogo/configuration/AppConfiguration.class
+com/ejemplo/catalogo/repository/file/csv/JsonRepository.class

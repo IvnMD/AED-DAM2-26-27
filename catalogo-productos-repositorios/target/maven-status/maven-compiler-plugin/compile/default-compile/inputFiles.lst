@@ -1,0 +1,9 @@
+/home/ivan/Documentos/AED/catalogo-productos-repositorios/src/main/java/CsvCrudDemo.java
+/home/ivan/Documentos/AED/catalogo-productos-repositorios/src/main/java/com/ejemplo/catalogo/configuration/AppConfiguration.java
+/home/ivan/Documentos/AED/catalogo-productos-repositorios/src/main/java/com/ejemplo/catalogo/model/Producto.java
+/home/ivan/Documentos/AED/catalogo-productos-repositorios/src/main/java/com/ejemplo/catalogo/model/ProductosXml.java
+/home/ivan/Documentos/AED/catalogo-productos-repositorios/src/main/java/com/ejemplo/catalogo/repository/file/csv/AbstractRepository.java
+/home/ivan/Documentos/AED/catalogo-productos-repositorios/src/main/java/com/ejemplo/catalogo/repository/file/csv/CsvRepository.java
+/home/ivan/Documentos/AED/catalogo-productos-repositorios/src/main/java/com/ejemplo/catalogo/repository/file/csv/IRepository.java
+/home/ivan/Documentos/AED/catalogo-productos-repositorios/src/main/java/com/ejemplo/catalogo/repository/file/csv/JsonRepository.java
+/home/ivan/Documentos/AED/catalogo-productos-repositorios/src/main/java/com/ejemplo/catalogo/repository/file/csv/XmlRepository.java

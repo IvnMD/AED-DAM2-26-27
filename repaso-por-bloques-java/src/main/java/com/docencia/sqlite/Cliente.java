@@ -13,6 +13,7 @@ public class Cliente {
         this.ciudad = ciudad;
     }
 
+
     public String getDni() { return dni; }
     public String getNombre() { return nombre; }
     public String getEmail() { return email; }

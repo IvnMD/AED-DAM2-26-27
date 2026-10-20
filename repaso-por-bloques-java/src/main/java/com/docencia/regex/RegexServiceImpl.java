@@ -4,38 +4,52 @@ public class RegexServiceImpl implements RegexService {
 
     @Override
     public Boolean validarDni(String dni) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'validarDni'");
+        if (dni == null || dni.isBlank()){
+            return false;
+        }
+        return dni.matches("^[0-9]{8}[A-Z]$");
     }
 
     @Override
     public Boolean validarEmail(String email) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'validarEmail'");
+        if (email == null || email.isBlank()){
+            return false;
+        }
+        return email.matches("^[a-z]+@[a-z]+\\.[a-z]+$");
+
     }
 
     @Override
     public Boolean validarTelefono(String telefono) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'validarTelefono'");
+        if (telefono == null || telefono.isBlank()){
+            return false;
+        }
+        return telefono.matches("^(6|7|8|9)[0-9]{8}$");
+
     }
 
     @Override
     public Boolean validarNombre(String nombre) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'validarNombre'");
+        if (nombre == null || nombre.isBlank() || nombre.length() < 2){
+            return false;
+        }
+        return nombre.matches("^[A-ZÁÉÍÓÚ][a-záéíóú]+ [A-ZÁÉÍÓÚ][a-záéíóú]+$");
     }
 
     @Override
     public Boolean validarCodigoPostal(String codigoPostal) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'validarCodigoPostal'");
+        if (codigoPostal == null || codigoPostal.isBlank()){
+            return false;
+        }
+        return codigoPostal.matches("^[0-9]{5}$");
     }
 
     @Override
     public Boolean validarMatricula(String matricula) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'validarMatricula'");
+        if (matricula == null || matricula.isBlank()) {
+            return false;
+        }
+        return matricula.matches("[0-9]{4}[A-Z]{3}");
     }
-    
+
 }
