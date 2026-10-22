@@ -2,6 +2,8 @@ package es.ejemplo.gestion.dao;
 
 import es.ejemplo.gestion.exception.AplicationException;
 import es.ejemplo.gestion.model.Producto;
+
+import javax.imageio.plugins.jpeg.JPEGImageReadParam;
 import java.sql.*;
 import java.util.*;
 
@@ -49,37 +51,88 @@ public class ProductoDao extends AbstractDao<Producto> {
     }
 
     public boolean eliminar(Integer id) {
-        // TODO: DELETE ... WHERE id = ?; ejecutar(ps)
-        return false;
+        String sql = "DELETE FROM Productos WHERE id = ?";
+        try (Connection cn = obtenerConexion();
+        PreparedStatement ps = cn.prepareStatement(sql)){
+            ps.setInt(1, id);
+            return ejecutar(ps);
+        } catch (RuntimeException | SQLException e) {
+            throw new AplicationException(e.getMessage(), e);
+        }
     }
 
     public boolean insertar(Producto p) {
-        // TODO: validar, INSERT con tres parámetros, ejecutar(ps)
-        return false;
+        String sql = "INSERT INTO Productos (id, nombre, precio) VALUES (?, ?, ?)";
+        try (Connection cn = obtenerConexion();
+        PreparedStatement ps = cn.prepareStatement(sql)){
+            ps.setInt(1, p.getId());
+            ps.setString(2, p.getNombre());
+            ps.setDouble(3, p.getPrecio());
+            return ejecutar(ps);
+
+        } catch (RuntimeException | SQLException e){
+            throw new AplicationException(e.getMessage(), e);
+        }
+
     }
 
     public boolean actualizar(Producto p) {
-        // TODO: validar, UPDATE con parámetros, ejecutar(ps)
-        return false;
+        String sql = "UPDATE Productos SET nombre = ?, precio = ? WHERE id = ?";
+        try (Connection cn = obtenerConexion();
+             PreparedStatement ps = cn.prepareStatement(sql)){
+            ps.setString(1, p.getNombre());
+            ps.setDouble(2, p.getPrecio());
+            ps.setInt(3, p.getId());
+            return ejecutar(ps);
+
+        } catch (RuntimeException | SQLException e){
+            throw new AplicationException(e.getMessage(), e);
+        }
     }
 
     public List<Producto> buscarPorNombre(String texto) {
-        // TODO: búsqueda parcial case-insensitive, ordenada por nombre e id
-        return List.of();
+        String sql = "SELECT id, nombre, precio FROM Productos WHERE INSTR(LOWER(nombre), ?) > 0 ORDER BY id DESC";        try (Connection con = obtenerConexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, texto.toLowerCase());
+            return consultar(ps);
+        } catch (SQLException | RuntimeException e) {
+            registrar("listar productos", e);
+            return List.of();
+        }
     }
 
     public List<Producto> buscarPorPrecio(double minimo, double maximo) {
-        // TODO: BETWEEN inclusivo, ordenado por id
-        return List.of();
+        String sql = "SELECT id, nombre, precio FROM Productos WHERE precio >= ? AND precio <= ?";
+        try (Connection con = obtenerConexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setDouble(1, minimo);
+            ps.setDouble(2, maximo);
+            return consultar(ps);
+        } catch (SQLException | RuntimeException e) {
+            registrar("listar productos", e);
+            return List.of();
+        }
     }
 
     public int contar() {
-        // TODO: SELECT COUNT(*) y consultarEntero(ps)
-        return 0;
+        String sql = "SELECT COUNT(*) FROM Productos";
+        try (Connection cn = obtenerConexion();
+        PreparedStatement ps = cn.prepareStatement(sql)){
+            return consultarEntero(ps);
+        } catch (Exception e) {
+            throw new AplicationException(e.getMessage(), e);
+        }
+
     }
 
     public double precioMedio() {
-        // TODO: COALESCE(AVG(precio),0) y consultarDecimal(ps)
-        return 0;
+        String sql = "SELECT COALESCE(AVG(precio),0) FROM Productos";
+        try (Connection cn = obtenerConexion();
+             PreparedStatement ps = cn.prepareStatement(sql)) {
+            return consultarDecimal(ps);
+        } catch (Exception e) {
+            throw new AplicationException(e.getMessage(), e);
+        }
+
     }
 }
