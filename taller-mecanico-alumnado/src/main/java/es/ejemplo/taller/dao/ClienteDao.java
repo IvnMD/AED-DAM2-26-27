@@ -5,12 +5,13 @@ import es.ejemplo.taller.modelo.Cliente;
 import java.sql.*;
 import java.util.*;
 
-public class ClienteDao extends ConexionBD {
+public class ClienteDao extends AbstractDao<Cliente> {
 
     public ClienteDao(String url) {
         super(url);
     }
 
+    @Override
     protected Optional<Cliente> mapRsToClass(ResultSet rs) {
         try {
             return Optional.of(new Cliente(
@@ -19,65 +20,75 @@ public class ClienteDao extends ConexionBD {
                     rs.getString("email"),
                     rs.getString("telefono")
             ));
-        } catch (SQLException | RuntimeException e) {
+        } catch (SQLException e) {
+            registrar("mapRsToClass cliente", e);
             return Optional.empty();
         }
     }
 
     public List<Cliente> listar() {
-        List<Cliente> lista = new ArrayList<>();
-        String query = "SELECT id_cliente, nombre, email, telefono FROM Clientes";
-        try (Connection cn = obtenerConexion();
-             PreparedStatement ps = cn.prepareStatement(query);
-             ResultSet rs = ps.executeQuery()) {
+        String sql = "SELECT * FROM clientes";
 
-            while (rs.next()) {
-                mapRsToClass(rs);
-            }
-            return lista;
-        } catch (Exception e) {
+        try (Connection cn = obtenerConexion();
+             PreparedStatement ps = cn.prepareStatement(sql)) {
+
+            return consultar(ps);
+        } catch (SQLException | RuntimeException e) {
+            registrar("listar clientes", e);
             return List.of();
         }
     }
 
     public Optional<Cliente> buscarPorId(Integer id) {
-        String query = "SELECT id_cliente, nombre, email, telefono FROM Clientes WHERE id_cliente = ?";
-        try (Connection cn = obtenerConexion();
-             PreparedStatement ps = cn.prepareStatement(query)) {
-
-            ps.setInt(1, id);
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    return mapRsToClass(rs);
-                }
-            }
-        } catch (Exception e) {
+        if (id == null) {
             return Optional.empty();
         }
-        return Optional.empty();
+
+        String sql = "SELECT * FROM clientes WHERE id_cliente = ?";
+
+        try (Connection cn = obtenerConexion();
+             PreparedStatement ps = cn.prepareStatement(sql)) {
+
+            ps.setInt(1, id);
+            return consultarUno(ps);
+        } catch (SQLException | RuntimeException e) {
+            registrar("buscarPorId cliente", e);
+            return Optional.empty();
+        }
     }
 
     public int insertar(Cliente dato) {
-        String query = "INSERT INTO Clientes (nombre, email, telefono) VALUES (?, ?, ?)";
+
+        String sql = "INSERT INTO clientes (nombre, email, telefono) VALUES (?, ?, ?)";
+
         try (Connection cn = obtenerConexion();
-             PreparedStatement ps = cn.prepareStatement(query)) {
+             PreparedStatement ps = cn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setString(1, dato.getNombre());
             ps.setString(2, dato.getEmail());
             ps.setString(3, dato.getTelefono());
 
-            return ps.executeUpdate();
+            int filas = ps.executeUpdate();
 
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+            if (filas == 0) {
+                return 0;
+            }
+
+            try (ResultSet rs = ps.getGeneratedKeys()) {
+                return rs.next() ? rs.getInt(1) : 0;
+            }
+        } catch (SQLException | RuntimeException e) {
+            registrar("insertar cliente", e);
+            return 0;
         }
     }
 
-
     public int actualizar(Cliente dato) {
-        String query = "UPDATE Clientes SET nombre = ?, email = ?, telefono = ? WHERE id_cliente = ?";
+
+        String sql = "UPDATE PDATE clientes SET nombre = ?, email = ?, telefono = ? WHERE id_cliente = ? ";
+
         try (Connection cn = obtenerConexion();
-             PreparedStatement ps = cn.prepareStatement(query)) {
+             PreparedStatement ps = cn.prepareStatement(sql)) {
 
             ps.setString(1, dato.getNombre());
             ps.setString(2, dato.getEmail());
@@ -85,23 +96,26 @@ public class ClienteDao extends ConexionBD {
             ps.setInt(4, dato.getIdCliente());
 
             return ps.executeUpdate();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        } catch (SQLException | RuntimeException e) {
+            registrar("actualizar cliente", e);
+            return 0;
         }
     }
 
     public int eliminar(Integer id) {
-        String query = "DELETE FROM Clientes WHERE id_cliente = ?";
+
+        String sql = "DELETE FROM clientes WHERE id_cliente = ?";
+
         try (Connection cn = obtenerConexion();
-             PreparedStatement ps = cn.prepareStatement(query)) {
+             PreparedStatement ps = cn.prepareStatement(sql)) {
 
             ps.setInt(1, id);
-            if (ps.executeUpdate() > 0) {
-                return 1;
-            }
-        } catch (Exception e) {
-
+            return ps.executeUpdate();
+        } catch (SQLException | RuntimeException e) {
+            registrar("eliminar cliente", e);
+            return 0;
         }
-        return 0;
     }
+
 }
+

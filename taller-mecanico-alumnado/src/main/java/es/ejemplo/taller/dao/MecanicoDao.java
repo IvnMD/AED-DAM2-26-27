@@ -5,12 +5,13 @@ import es.ejemplo.taller.modelo.Mecanico;
 import java.sql.*;
 import java.util.*;
 import java.math.BigDecimal;
-public class MecanicoDao  extends ConexionBD {
+public class MecanicoDao extends AbstractDao<Mecanico> {
 
     public MecanicoDao(String url) {
         super(url);
     }
 
+    @Override
     protected Optional<Mecanico> mapRsToClass(ResultSet rs) {
         try {
             return Optional.of(new Mecanico(
@@ -19,64 +20,76 @@ public class MecanicoDao  extends ConexionBD {
                     rs.getString("especialidad"),
                     rs.getBigDecimal("tarifa_hora")
             ));
-        } catch (SQLException | RuntimeException e) {
+        } catch (SQLException e) {
+            registrar("mapRsToClass mecanico", e);
             return Optional.empty();
         }
     }
 
     public List<Mecanico> listar() {
-        List<Mecanico> lista = new ArrayList<>();
-        String query = "SELECT id_mecanico, nombre, especialidad, tarifa_hora FROM Mecanicos";
-        try (Connection cn = obtenerConexion();
-             PreparedStatement ps = cn.prepareStatement(query);
-             ResultSet rs = ps.executeQuery()) {
+        String sql = "SELECT * FROM mecanicos";
 
-            while (rs.next()) {
-                mapRsToClass(rs);
-            }
-            return lista;
-        } catch (Exception e) {
+        try (Connection cn = obtenerConexion();
+             PreparedStatement ps = cn.prepareStatement(sql)) {
+
+            return consultar(ps);
+        } catch (SQLException | RuntimeException e) {
+            registrar("listar mecanicos", e);
             return List.of();
         }
     }
 
     public Optional<Mecanico> buscarPorId(Integer id) {
-        String query = "SELECT nombre, especialidad, tarifa_hora FROM Mecanicos WHERE id_mecanico = ?";
-        try (Connection cn = obtenerConexion();
-             PreparedStatement ps = cn.prepareStatement(query)) {
-
-            ps.setInt(1, id);
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    return mapRsToClass(rs);
-                }
-            }
-        } catch (Exception e) {
+        if (id == null) {
             return Optional.empty();
         }
-        return Optional.empty();
+
+        String sql = "SELECT * FROM mecanicos WHERE id_mecanico = ?";
+
+        try (Connection cn = obtenerConexion();
+             PreparedStatement ps = cn.prepareStatement(sql)) {
+
+            ps.setInt(1, id);
+            return consultarUno(ps);
+        } catch (SQLException | RuntimeException e) {
+            registrar("buscarPorId mecanico", e);
+            return Optional.empty();
+        }
     }
 
     public int insertar(Mecanico dato) {
-        String query = "INSERT INTO Clientes (nombre, email, telefono) VALUES (?, ?, ?)";
+
+        String sql =" INSERT INTO mecanicos (nombre, especialidad, tarifa_hora) VALUES (?, ?, ?)";
+
         try (Connection cn = obtenerConexion();
-             PreparedStatement ps = cn.prepareStatement(query)) {
+             PreparedStatement ps = cn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setString(1, dato.getNombre());
             ps.setString(2, dato.getEspecialidad());
             ps.setBigDecimal(3, dato.getTarifaHora());
 
-            return ps.executeUpdate();
+            int filas = ps.executeUpdate();
 
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+            if (filas == 0) {
+                return 0;
+            }
+
+            try (ResultSet rs = ps.getGeneratedKeys()) {
+                return rs.next() ? rs.getInt(1) : 0;
+            }
+        } catch (SQLException | RuntimeException e) {
+            registrar("insertar mecanico", e);
+            return 0;
         }
     }
 
     public int actualizar(Mecanico dato) {
-        String query = "UPDATE mecanicos SET nombre = ?, especialidad = ?, tarifa_hora = ? WHERE id_mecanico = ?";
+
+
+        String sql = "UPDATE mecanicos SET nombre = ?,especialidad = ?,tarifa_hora = ? WHERE id_mecanico = ?";
+
         try (Connection cn = obtenerConexion();
-             PreparedStatement ps = cn.prepareStatement(query)) {
+             PreparedStatement ps = cn.prepareStatement(sql)) {
 
             ps.setString(1, dato.getNombre());
             ps.setString(2, dato.getEspecialidad());
@@ -84,38 +97,44 @@ public class MecanicoDao  extends ConexionBD {
             ps.setInt(4, dato.getIdMecanico());
 
             return ps.executeUpdate();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        } catch (SQLException | RuntimeException e) {
+            registrar("actualizar mecanico", e);
+            return 0;
         }
     }
 
     public int eliminar(Integer id) {
-        String query = "DELETE FROM mecanicos WHERE id_mecanico = ?";
+        if (id == null) {
+            return 0;
+        }
+
+        String sql = "DELETE FROM mecanicos WHERE id_mecanico = ?";
+
         try (Connection cn = obtenerConexion();
-             PreparedStatement ps = cn.prepareStatement(query)) {
+             PreparedStatement ps = cn.prepareStatement(sql)) {
 
             ps.setInt(1, id);
-            if (ps.executeUpdate() > 0) {
-                return 1;
-            }
-        } catch (Exception e) {
-
+            return ps.executeUpdate();
+        } catch (SQLException | RuntimeException e) {
+            registrar("eliminar mecanico", e);
+            return 0;
         }
-        return 0;
     }
 
     public List<Mecanico> buscarPorEspecialidad(String especialidad) {
-        List<Mecanico> lista = new ArrayList<>();
-        String query = "SELECT id_mecanico, especialidad, tarifa_hora FROM Mecanicos WHERE LOWER(nombre) LIKE ?";
-        try (Connection cn = obtenerConexion();
-             PreparedStatement ps = cn.prepareStatement(query);
-             ResultSet rs = ps.executeQuery()) {
+        if (especialidad == null || especialidad.isBlank()) {
+            return List.of();
+        }
 
-            while (rs.next()) {
-                mapRsToClass(rs);
-            }
-            return lista;
-        } catch (Exception e) {
+        String sql = "SELECT * FROM mecanicos WHERE especialidad = ?";
+
+        try (Connection cn = obtenerConexion();
+             PreparedStatement ps = cn.prepareStatement(sql)) {
+
+            ps.setString(1, especialidad);
+            return consultar(ps);
+        } catch (SQLException | RuntimeException e) {
+            registrar("buscarPorEspecialidad mecanico", e);
             return List.of();
         }
     }

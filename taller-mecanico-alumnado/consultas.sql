@@ -1,9 +1,9 @@
 -- 1. Lista los clientes ordenados por nombre.
-
+    SELECT id_cliente, nombre, email, telefono FROM clientes ORDER BY nombre;
 -- 2. Consulta matrícula, marca, modelo y año de los vehículos de una marca elegida.
-
+    SELECT matricula, marca, modelo, anio FROM vehiculos WHERE marca = ?;
 -- 3. Obtén los vehículos de un cliente utilizando su identificador.
-
+    SELECT matricula, marca, modelo, anio FROM vehiculos WHERE id_cliente = ?;
 -- 4. Lista los mecánicos de una especialidad y ordénalos por tarifa.
 
 -- 5. Obtén las reparaciones pendientes, ordenadas por fecha.
