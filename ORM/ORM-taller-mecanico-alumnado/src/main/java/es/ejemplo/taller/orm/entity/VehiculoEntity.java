@@ -26,5 +26,49 @@ public class VehiculoEntity {
     private ClienteEntity cliente;
 
     protected VehiculoEntity() {}
-    // Añade constructor, getters y setters como en el código entregado.
+
+    public VehiculoEntity(String matricula, String marca,String modelo,  Integer anio, Integer idCliente) {
+        this.matricula = matricula;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.anio = anio;
+        this.idCliente = idCliente;
+    }
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+
+
+    public Integer getIdCliente() {
+        return idCliente;
+    }
+
+    public Integer getAnio() {
+        return anio;
+    }
+
+    public void setAnio(Integer anio) {
+        this.anio = anio;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
 }
