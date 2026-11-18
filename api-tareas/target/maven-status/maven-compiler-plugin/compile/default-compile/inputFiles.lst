@@ -1,0 +1,11 @@
+/home/A94M15016K/Documentos/AED-DAM2-26-27/api-tareas/src/main/java/aula/tareas/TareasApplication.java
+/home/A94M15016K/Documentos/AED-DAM2-26-27/api-tareas/src/main/java/aula/tareas/controller/TareaControllerCsv.java
+/home/A94M15016K/Documentos/AED-DAM2-26-27/api-tareas/src/main/java/aula/tareas/controller/TareaControllerJson.java
+/home/A94M15016K/Documentos/AED-DAM2-26-27/api-tareas/src/main/java/aula/tareas/modelo/Tarea.java
+/home/A94M15016K/Documentos/AED-DAM2-26-27/api-tareas/src/main/java/aula/tareas/repository/ITareaRepository.java
+/home/A94M15016K/Documentos/AED-DAM2-26-27/api-tareas/src/main/java/aula/tareas/repository/TareaRepository.java
+/home/A94M15016K/Documentos/AED-DAM2-26-27/api-tareas/src/main/java/aula/tareas/repository/TareaRepositoryCsv.java
+/home/A94M15016K/Documentos/AED-DAM2-26-27/api-tareas/src/main/java/aula/tareas/repository/TareaRepositoryJson.java
+/home/A94M15016K/Documentos/AED-DAM2-26-27/api-tareas/src/main/java/aula/tareas/service/ITareaService.java
+/home/A94M15016K/Documentos/AED-DAM2-26-27/api-tareas/src/main/java/aula/tareas/service/TareaServiceCsv.java
+/home/A94M15016K/Documentos/AED-DAM2-26-27/api-tareas/src/main/java/aula/tareas/service/TareaServiceJson.java
