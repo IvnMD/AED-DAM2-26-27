@@ -2,6 +2,7 @@ package aula.tareas.mapper;
 
 import aula.tareas.api.TareaResquest;
 import aula.tareas.entity.TareaEntityJdbc;
+import aula.tareas.modelo.Tarea;
 
 public class TareaMapperJdbc {
 
@@ -11,5 +12,12 @@ public class TareaMapperJdbc {
 
      public static TareaEntityJdbc toJdbc(TareaResquest tareaResquest) {
          return null;
+     }
+
+     static public TareaEntityJdbc to(Tarea tarea) {
+        if (tarea == null) {
+            return null;
+        }
+        return TareaEntityJdbc(tarea.getId(), tarea.getTitulo());
      }
 }
