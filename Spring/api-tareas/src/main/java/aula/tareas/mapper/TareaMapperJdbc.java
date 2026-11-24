@@ -18,6 +18,6 @@ public class TareaMapperJdbc {
         if (tarea == null) {
             return null;
         }
-        return TareaEntityJdbc(tarea.getId(), tarea.getTitulo());
+        return new TareaEntityJdbc(tarea.getId(), tarea.getTitulo());
      }
 }
