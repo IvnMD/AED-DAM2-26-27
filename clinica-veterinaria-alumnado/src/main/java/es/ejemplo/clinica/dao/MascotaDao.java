@@ -20,6 +20,7 @@ public final class MascotaDao implements IMascotaDao {
         this.url = url;
     }
 
+<<<<<<< Updated upstream
     private Mascota mapMascota(ResultSet rs) throws SQLException {
         return new Mascota(
                 rs.getInt("id"),
@@ -29,6 +30,17 @@ public final class MascotaDao implements IMascotaDao {
                 rs.getString("fecha_nacimiento"),
                 rs.getInt("id_cliente")
         );
+=======
+    private Mascota mapear(ResultSet rs) throws SQLException {
+        Mascota mascota = new Mascota();
+        mascota.setId(rs.getInt("id"));
+        mascota.setNombre(rs.getString("nombre"));
+        mascota.setEspecie(rs.getString("especie"));
+        mascota.setRaza(rs.getString("raza"));
+        mascota.setFechaNacimiento(rs.getString("fecha_nacimiento"));
+        mascota.setIdCliente(rs.getInt("id_cliente"));
+        return mascota;
+>>>>>>> Stashed changes
     }
 
     @Override
@@ -41,9 +53,14 @@ public final class MascotaDao implements IMascotaDao {
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
+<<<<<<< Updated upstream
                 lista.add(mapMascota(rs));
             }
 
+=======
+                lista.add(mapear(rs));
+            }
+>>>>>>> Stashed changes
             return lista;
 
         } catch (SQLException e) {
@@ -65,6 +82,7 @@ public final class MascotaDao implements IMascotaDao {
             ps.setInt(1, id);
 
             try (ResultSet rs = ps.executeQuery()) {
+<<<<<<< Updated upstream
                 if (rs.next()) {
                     return Optional.of(mapMascota(rs));
                 }
@@ -74,6 +92,13 @@ public final class MascotaDao implements IMascotaDao {
 
         } catch (SQLException e) {
             throw new DaoException("Error al buscar la mascota por id", e);
+=======
+                return rs.next() ? Optional.of(mapear(rs)) : Optional.empty();
+            }
+
+        } catch (SQLException e) {
+            throw new DaoException("Error al buscar la mascota " + id, e);
+>>>>>>> Stashed changes
         }
     }
 
@@ -97,10 +122,16 @@ public final class MascotaDao implements IMascotaDao {
                     entidad.setId(id);
                     return id;
                 }
+<<<<<<< Updated upstream
             }
 
             throw new DaoException("No se pudo obtener el identificador de la mascota insertada", null);
 
+=======
+                throw new DaoException("No se pudo obtener el identificador de la mascota insertada", null);
+            }
+
+>>>>>>> Stashed changes
         } catch (SQLException e) {
             throw new DaoException("Error al insertar la mascota", e);
         }
@@ -127,7 +158,11 @@ public final class MascotaDao implements IMascotaDao {
             return ps.executeUpdate();
 
         } catch (SQLException e) {
+<<<<<<< Updated upstream
             throw new DaoException("Error al actualizar la mascota", e);
+=======
+            throw new DaoException("Error al actualizar la mascota " + entidad.getId(), e);
+>>>>>>> Stashed changes
         }
     }
 
@@ -146,7 +181,11 @@ public final class MascotaDao implements IMascotaDao {
             return ps.executeUpdate();
 
         } catch (SQLException e) {
+<<<<<<< Updated upstream
             throw new DaoException("Error al eliminar la mascota", e);
+=======
+            throw new DaoException("Error al eliminar la mascota " + id, e);
+>>>>>>> Stashed changes
         }
     }
 
@@ -162,6 +201,7 @@ public final class MascotaDao implements IMascotaDao {
 
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
+<<<<<<< Updated upstream
                     lista.add(mapMascota(rs));
                 }
             }
@@ -170,6 +210,15 @@ public final class MascotaDao implements IMascotaDao {
 
         } catch (SQLException e) {
             throw new DaoException("Error al buscar mascotas por cliente", e);
+=======
+                    lista.add(mapear(rs));
+                }
+            }
+            return lista;
+
+        } catch (SQLException e) {
+            throw new DaoException("Error al buscar mascotas del cliente " + idCliente, e);
+>>>>>>> Stashed changes
         }
     }
 
@@ -185,10 +234,16 @@ public final class MascotaDao implements IMascotaDao {
 
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
+<<<<<<< Updated upstream
                     lista.add(mapMascota(rs));
                 }
             }
 
+=======
+                    lista.add(mapear(rs));
+                }
+            }
+>>>>>>> Stashed changes
             return lista;
 
         } catch (SQLException e) {

@@ -1,21 +1,24 @@
 package es.ejemplo.biblioteca.dao;
 
-import es.ejemplo.biblioteca.modelo.Autor;
-import es.ejemplo.biblioteca.orm.entity.AutorEntity;
-import es.ejemplo.biblioteca.orm.mapper.AutorMapper;
-import es.ejemplo.biblioteca.orm.config.OrmFactory;
-import jakarta.persistence.EntityManagerFactory;
 import java.util.List;
 import java.util.Optional;
-import java.util.logging.Logger;
 import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import es.ejemplo.biblioteca.modelo.Autor;
+import es.ejemplo.biblioteca.orm.config.OrmFactory;
+import es.ejemplo.biblioteca.orm.entity.AutorEntity;
+import es.ejemplo.biblioteca.orm.mapper.AutorMapper;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
 
 public class AutorDao implements AutoCloseable {
     private static final Logger LOG = Logger.getLogger(AutorDao.class.getName());
     private final EntityManagerFactory managerFactory;
     private final boolean ownFactory;
 
-    public AutorDao(String url) {
+    public AutorDao(String url) { 
         managerFactory = OrmFactory.crear(url);
         ownFactory = true;
     }
@@ -32,8 +35,8 @@ public class AutorDao implements AutoCloseable {
     public List<Autor> listar() {
         try (var em = managerFactory.createEntityManager()) {
             return em.createQuery(
-                            "select a from AutorEntity a order by a.idAutor",
-                            AutorEntity.class)
+                    "select a from AutorEntity a order by a.idAutor",
+                    AutorEntity.class)
                     .getResultStream()
                     .map(AutorMapper::toDomain)
                     .toList();
@@ -68,7 +71,8 @@ public class AutorDao implements AutoCloseable {
                 tx.commit();
                 return entidad.getIdAutor();
             } catch (RuntimeException ex) {
-                if (tx.isActive()) tx.rollback();
+                if (tx.isActive())
+                    tx.rollback();
                 registrar("insertar", ex);
                 throw ex;
             }
@@ -76,7 +80,8 @@ public class AutorDao implements AutoCloseable {
     }
 
     public int actualizar(Autor dato) {
-        if (dato == null || dato.getIdAutor() == null) return 0;
+        if (dato == null || dato.getIdAutor() == null)
+            return 0;
 
         try (var em = managerFactory.createEntityManager()) {
             var tx = em.getTransaction();
@@ -94,31 +99,48 @@ public class AutorDao implements AutoCloseable {
                 tx.commit();
                 return 1;
             } catch (RuntimeException ex) {
-                if (tx.isActive()) tx.rollback();
+                if (tx.isActive())
+                    tx.rollback();
                 registrar("actualizar", ex);
                 throw ex;
             }
         }
     }
 
+    /**
+     * Elimina un autor por identificador.
+     *
+     * @param id identificador del autor
+     * @return 1 si se eliminó, 0 si no existe o hay libros asociados
+     */
     public int eliminar(Integer id) {
-        try (var em = managerFactory.createEntityManager()) {
-            var tx = em.getTransaction();
-            try {
-                tx.begin();
-                AutorEntity a = em.find(AutorEntity.class, id);
-                if (a == null) {
-                    tx.commit();
-                    return 0;
-                }
-                em.remove(a);
-                tx.commit();
-                return 1;
-            } catch (RuntimeException ex) {
-                if (tx.isActive()) tx.rollback();
-                registrar("eliminar", ex);
-                throw ex;
+        if (id == null) {
+            return 0;
+        }
+
+        EntityManager em = managerFactory.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+
+        try {
+            tx.begin();
+            AutorEntity autor = em.find(AutorEntity.class, id);
+
+            if (autor == null) {
+                tx.rollback();
+                return 0;
             }
+
+            em.remove(autor);
+            tx.commit();
+            return 1;
+        } catch (Exception ex) {
+            if (tx.isActive()) {
+                tx.rollback();
+            }
+            registrar("eliminar", ex);
+            return 0;
+        } finally {
+            em.close();
         }
     }
 
@@ -129,8 +151,8 @@ public class AutorDao implements AutoCloseable {
     public List<Autor> buscarPorNacionalidad(String nacionalidad) {
         try (var em = managerFactory.createEntityManager()) {
             return em.createQuery(
-                            "select a from AutorEntity a where a.nacionalidad = :nacionalidad",
-                            AutorEntity.class)
+                    "select a from AutorEntity a where a.nacionalidad = :nacionalidad",
+                    AutorEntity.class)
                     .setParameter("nacionalidad", nacionalidad)
                     .getResultStream()
                     .map(AutorMapper::toDomain)
@@ -144,8 +166,8 @@ public class AutorDao implements AutoCloseable {
     public long contarLibrosPorAutor(int idAutor) {
         try (var em = managerFactory.createEntityManager()) {
             return em.createQuery(
-                            "select count(l) from LibroEntity l where l.autor.idAutor = :idAutor",
-                            Long.class)
+                    "select count(l) from LibroEntity l where l.autor.idAutor = :idAutor",
+                    Long.class)
                     .setParameter("idAutor", idAutor)
                     .getSingleResult();
         } catch (RuntimeException e) {
@@ -157,8 +179,8 @@ public class AutorDao implements AutoCloseable {
     public List<Object[]> autoresConRecuento() {
         try (var em = managerFactory.createEntityManager()) {
             return em.createQuery(
-                            "select a.nombre, count(a) from AutorEntity a group by a.nombre order by min(a.id_autor)",
-                            Object[].class)
+                    "select a.nombre, count(a) from AutorEntity a group by a.nombre order by min(a.id_autor)",
+                    Object[].class)
                     .getResultList();
         } catch (RuntimeException e) {
             registrar("autoresConRecuento", e);
@@ -169,8 +191,8 @@ public class AutorDao implements AutoCloseable {
     public List<Autor> autoresLeidosPorTresSocios() {
         try (var em = managerFactory.createEntityManager()) {
             return em.createQuery(
-                            "select p.libro.autor from PrestamoEntity p group by p.libro.autor having count(p) > 3",
-                            AutorEntity.class)
+                    "select p.libro.autor from PrestamoEntity p group by p.libro.autor having count(p) > 3",
+                    AutorEntity.class)
                     .getResultStream()
                     .map(AutorMapper::toDomain)
                     .toList();

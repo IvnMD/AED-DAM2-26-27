@@ -1,0 +1,83 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m------------------------< [0;36mies.puesto:peliculas[0;1m >------------------------[m
+[[1;34mINFO[m] [1mBuilding peliculas 0.0.1-SNAPSHOT[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-clean-plugin:3.4.1:clean[m [1m(default-clean)[m @ [36mpeliculas[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/ivnmd/DAM/2_DAM/AED-DAM2-26-27/Spring/practica-peliculas-jdbc/peliculas/target
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:3.3.1:resources[m [1m(default-resources)[m @ [36mpeliculas[0;1m ---[m
+[[1;34mINFO[m] Copying 1 resource from src/main/resources to target/classes
+[[1;34mINFO[m] Copying 0 resource from src/main/resources to target/classes
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.14.0:compile[m [1m(default-compile)[m @ [36mpeliculas[0;1m ---[m
+[[1;34mINFO[m] Recompiling the module because of [1mchanged source code[m.
+[[1;34mINFO[m] Compiling 16 source files with javac [debug parameters release 21] to target/classes
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:3.3.1:testResources[m [1m(default-testResources)[m @ [36mpeliculas[0;1m ---[m
+[[1;34mINFO[m] skip non existing resourceDirectory /home/ivnmd/DAM/2_DAM/AED-DAM2-26-27/Spring/practica-peliculas-jdbc/peliculas/src/test/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.14.0:testCompile[m [1m(default-testCompile)[m @ [36mpeliculas[0;1m ---[m
+[[1;34mINFO[m] Recompiling the module because of [1mchanged dependency[m.
+[[1;34mINFO[m] Compiling 5 source files with javac [debug parameters release 21] to target/test-classes
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-surefire-plugin:3.5.3:test[m [1m(default-test)[m @ [36mpeliculas[0;1m ---[m
+[[1;34mINFO[m] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[[1;34mINFO[m] 
+[[1;34mINFO[m] -------------------------------------------------------
+[[1;34mINFO[m]  T E S T S
+[[1;34mINFO[m] -------------------------------------------------------
+[[1;34mINFO[m] Running ies.puerto.peliculas.repository.jdbc.[1mPeliculaRowMapperTest[m
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+WARNING: A Java agent has been loaded dynamically (/home/ivnmd/.m2/repository/net/bytebuddy/byte-buddy-agent/1.17.5/byte-buddy-agent-1.17.5.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+[[1;34mINFO[m] [1;32mTests run: [0;1;32m1[m, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.677 s -- in ies.puerto.peliculas.repository.jdbc.[1mPeliculaRowMapperTest[m
+[[1;34mINFO[m] Running ies.puerto.peliculas.repository.jdbc.[1mPeliculaEntityMapperTest[m
+[[1;34mINFO[m] [1;32mTests run: [0;1;32m2[m, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.015 s -- in ies.puerto.peliculas.repository.jdbc.[1mPeliculaEntityMapperTest[m
+[[1;34mINFO[m] Running ies.puerto.peliculas.controller.mapper.[1mPeliculaApiMapperTest[m
+[[1;34mINFO[m] [1;32mTests run: [0;1;32m5[m, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.061 s -- in ies.puerto.peliculas.controller.mapper.[1mPeliculaApiMapperTest[m
+[[1;34mINFO[m] Running ies.puerto.peliculas.controller.[1mPeliculaJdbcControllerTest[m
+22:49:43.160 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [ies.puerto.peliculas.controller.PeliculaJdbcControllerTest]: PeliculaJdbcControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+22:49:43.398 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration ies.puerto.peliculas.PeliculasApplication for test class ies.puerto.peliculas.controller.PeliculaJdbcControllerTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.5.0)
+
+2026-11-24T22:49:44.022Z  INFO 18392 --- [           main] i.p.p.c.PeliculaJdbcControllerTest       : Starting PeliculaJdbcControllerTest using Java 21.0.12.1 with PID 18392 (started by ivnmd in /home/ivnmd/DAM/2_DAM/AED-DAM2-26-27/Spring/practica-peliculas-jdbc/peliculas)
+2026-11-24T22:49:44.024Z  INFO 18392 --- [           main] i.p.p.c.PeliculaJdbcControllerTest       : The following 1 profile is active: "jdbc"
+2026-11-24T22:49:45.263Z  INFO 18392 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-11-24T22:49:45.264Z  INFO 18392 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-24T22:49:45.267Z  INFO 18392 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+2026-11-24T22:49:45.301Z  INFO 18392 --- [           main] i.p.p.c.PeliculaJdbcControllerTest       : Started PeliculaJdbcControllerTest in 1.781 seconds (process running for 5.024)
+2026-11-24T22:49:45.927Z  WARN 18392 --- [           main] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<?> ies.puerto.peliculas.controller.PeliculaJdbcController.crear(ies.puerto.peliculas.controller.api.PeliculaRequest) with 4 errors: [Field error in object 'peliculaRequest' on field 'anioEstreno': rejected value [null]; codes [NotNull.peliculaRequest.anioEstreno,NotNull.anioEstreno,NotNull.java.lang.Integer,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [peliculaRequest.anioEstreno,anioEstreno]; arguments []; default message [anioEstreno]]; default message [must not be null]] [Field error in object 'peliculaRequest' on field 'codigo': rejected value [null]; codes [NotBlank.peliculaRequest.codigo,NotBlank.codigo,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [peliculaRequest.codigo,codigo]; arguments []; default message [codigo]]; default message [must not be blank]] [Field error in object 'peliculaRequest' on field 'titulo': rejected value [null]; codes [NotBlank.peliculaRequest.titulo,NotBlank.titulo,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [peliculaRequest.titulo,titulo]; arguments []; default message [titulo]]; default message [must not be blank]] [Field error in object 'peliculaRequest' on field 'duracionMinutos': rejected value [null]; codes [NotNull.peliculaRequest.duracionMinutos,NotNull.duracionMinutos,NotNull.java.lang.Integer,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [peliculaRequest.duracionMinutos,duracionMinutos]; arguments []; default message [duracionMinutos]]; default message [must not be null]] ]
+2026-11-24T22:49:45.938Z  WARN 18392 --- [           main] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<?> ies.puerto.peliculas.controller.PeliculaJdbcController.crear(ies.puerto.peliculas.controller.api.PeliculaRequest): [Field error in object 'peliculaRequest' on field 'codigo': rejected value [ABC]; codes [Pattern.peliculaRequest.codigo,Pattern.codigo,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [peliculaRequest.codigo,codigo]; arguments []; default message [codigo],[Ljakarta.validation.constraints.Pattern$Flag;@121dce2,^PEL[0-9]{3}$]; default message [must match "^PEL[0-9]{3}$"]] ]
+2026-11-24T22:49:45.951Z  WARN 18392 --- [           main] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<?> ies.puerto.peliculas.controller.PeliculaJdbcController.crear(ies.puerto.peliculas.controller.api.PeliculaRequest): [Field error in object 'peliculaRequest' on field 'titulo': rejected value [   ]; codes [NotBlank.peliculaRequest.titulo,NotBlank.titulo,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [peliculaRequest.titulo,titulo]; arguments []; default message [titulo]]; default message [must not be blank]] ]
+2026-11-24T22:49:45.962Z  WARN 18392 --- [           main] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<?> ies.puerto.peliculas.controller.PeliculaJdbcController.crear(ies.puerto.peliculas.controller.api.PeliculaRequest): [Field error in object 'peliculaRequest' on field 'anioEstreno': rejected value [1887]; codes [Min.peliculaRequest.anioEstreno,Min.anioEstreno,Min.java.lang.Integer,Min]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [peliculaRequest.anioEstreno,anioEstreno]; arguments []; default message [anioEstreno],1888]; default message [must be greater than or equal to 1888]] ]
+2026-11-24T22:49:45.972Z  WARN 18392 --- [           main] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<?> ies.puerto.peliculas.controller.PeliculaJdbcController.crear(ies.puerto.peliculas.controller.api.PeliculaRequest): [Field error in object 'peliculaRequest' on field 'anioEstreno': rejected value [2101]; codes [Max.peliculaRequest.anioEstreno,Max.anioEstreno,Max.java.lang.Integer,Max]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [peliculaRequest.anioEstreno,anioEstreno]; arguments []; default message [anioEstreno],2100]; default message [must be less than or equal to 2100]] ]
+2026-11-24T22:49:45.993Z  WARN 18392 --- [           main] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<?> ies.puerto.peliculas.controller.PeliculaJdbcController.crear(ies.puerto.peliculas.controller.api.PeliculaRequest): [Field error in object 'peliculaRequest' on field 'duracionMinutos': rejected value [0]; codes [Min.peliculaRequest.duracionMinutos,Min.duracionMinutos,Min.java.lang.Integer,Min]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [peliculaRequest.duracionMinutos,duracionMinutos]; arguments []; default message [duracionMinutos],1]; default message [must be greater than or equal to 1]] ]
+2026-11-24T22:49:46.001Z  WARN 18392 --- [           main] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<?> ies.puerto.peliculas.controller.PeliculaJdbcController.crear(ies.puerto.peliculas.controller.api.PeliculaRequest): [Field error in object 'peliculaRequest' on field 'duracionMinutos': rejected value [1001]; codes [Max.peliculaRequest.duracionMinutos,Max.duracionMinutos,Max.java.lang.Integer,Max]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [peliculaRequest.duracionMinutos,duracionMinutos]; arguments []; default message [duracionMinutos],1000]; default message [must be less than or equal to 1000]] ]
+2026-11-24T22:49:46.062Z  WARN 18392 --- [           main] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<?> ies.puerto.peliculas.controller.PeliculaJdbcController.crear(ies.puerto.peliculas.controller.api.PeliculaRequest): [Field error in object 'peliculaRequest' on field 'titulo': rejected value [AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]; codes [Size.peliculaRequest.titulo,Size.titulo,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [peliculaRequest.titulo,titulo]; arguments []; default message [titulo],120,0]; default message [size must be between 0 and 120]] ]
+[[1;34mINFO[m] [1;32mTests run: [0;1;32m25[m, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.117 s -- in ies.puerto.peliculas.controller.[1mPeliculaJdbcControllerTest[m
+[[1;34mINFO[m] Running ies.puerto.peliculas.service.mapper.[1mPeliculaDominioMapperTest[m
+[[1;34mINFO[m] [1;32mTests run: [0;1;32m2[m, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in ies.puerto.peliculas.service.mapper.[1mPeliculaDominioMapperTest[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] Results:
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1;32mTests run: 35, Failures: 0, Errors: 0, Skipped: 0[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;32mBUILD SUCCESS[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  10.328 s
+[[1;34mINFO[m] Finished at: 2026-11-24T22:49:46Z
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m

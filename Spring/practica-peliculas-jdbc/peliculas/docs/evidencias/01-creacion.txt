@@ -1,0 +1,7 @@
+HTTP/1.1 201 
+Location: /api/v1/jdbc/peliculas/PEL003
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Tue, 24 Nov 2026 22:46:29 GMT
+
+{"codigo":"PEL003","titulo":"Prueba de persistencia","anioEstreno":2020,"duracionMinutos":100}

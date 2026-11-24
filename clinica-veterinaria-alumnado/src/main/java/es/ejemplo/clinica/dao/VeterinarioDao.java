@@ -20,6 +20,7 @@ public final class VeterinarioDao implements IVeterinarioDao {
         this.url = url;
     }
 
+<<<<<<< Updated upstream
     private Veterinario mapVeterinario(ResultSet rs) throws SQLException {
         return new Veterinario(
                 rs.getInt("id"),
@@ -27,22 +28,41 @@ public final class VeterinarioDao implements IVeterinarioDao {
                 rs.getString("especialidad"),
                 rs.getBigDecimal("tarifa_hora")
         );
+=======
+    private Veterinario mapear(ResultSet rs) throws SQLException {
+        Veterinario veterinario = new Veterinario();
+        veterinario.setId(rs.getInt("id"));
+        veterinario.setNombre(rs.getString("nombre"));
+        veterinario.setEspecialidad(rs.getString("especialidad"));
+        veterinario.setTarifaHora(rs.getBigDecimal("tarifa_hora"));
+        return veterinario;
+>>>>>>> Stashed changes
     }
 
     @Override
     public List<Veterinario> listar() {
         String sql = "SELECT id, nombre, especialidad, tarifa_hora FROM veterinarios ORDER BY id";
+<<<<<<< Updated upstream
         List<Veterinario> veterinarios = new ArrayList<>();
+=======
+        List<Veterinario> lista = new ArrayList<>();
+>>>>>>> Stashed changes
 
         try (Connection cn = ConexionBD.abrir(url);
              PreparedStatement ps = cn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
+<<<<<<< Updated upstream
                 veterinarios.add(mapVeterinario(rs));
             }
 
             return veterinarios;
+=======
+                lista.add(mapear(rs));
+            }
+            return lista;
+>>>>>>> Stashed changes
 
         } catch (SQLException e) {
             throw new DaoException("Error al listar veterinarios", e);
@@ -63,6 +83,7 @@ public final class VeterinarioDao implements IVeterinarioDao {
             ps.setInt(1, id);
 
             try (ResultSet rs = ps.executeQuery()) {
+<<<<<<< Updated upstream
                 if (rs.next()) {
                     return Optional.of(mapVeterinario(rs));
                 }
@@ -72,6 +93,13 @@ public final class VeterinarioDao implements IVeterinarioDao {
 
         } catch (SQLException e) {
             throw new DaoException("Error al buscar veterinario por id", e);
+=======
+                return rs.next() ? Optional.of(mapear(rs)) : Optional.empty();
+            }
+
+        } catch (SQLException e) {
+            throw new DaoException("Error al buscar el veterinario " + id, e);
+>>>>>>> Stashed changes
         }
     }
 
@@ -93,12 +121,20 @@ public final class VeterinarioDao implements IVeterinarioDao {
                     entidad.setId(id);
                     return id;
                 }
+<<<<<<< Updated upstream
             }
 
             throw new DaoException("No se pudo obtener el identificador del veterinario insertado", null);
 
         } catch (SQLException e) {
             throw new DaoException("Error al insertar veterinario", e);
+=======
+                throw new DaoException("No se pudo obtener el identificador del veterinario insertado", null);
+            }
+
+        } catch (SQLException e) {
+            throw new DaoException("Error al insertar el veterinario", e);
+>>>>>>> Stashed changes
         }
     }
 
@@ -121,7 +157,11 @@ public final class VeterinarioDao implements IVeterinarioDao {
             return ps.executeUpdate();
 
         } catch (SQLException e) {
+<<<<<<< Updated upstream
             throw new DaoException("Error al actualizar veterinario", e);
+=======
+            throw new DaoException("Error al actualizar el veterinario " + entidad.getId(), e);
+>>>>>>> Stashed changes
         }
     }
 
@@ -140,14 +180,22 @@ public final class VeterinarioDao implements IVeterinarioDao {
             return ps.executeUpdate();
 
         } catch (SQLException e) {
+<<<<<<< Updated upstream
             throw new DaoException("Error al eliminar veterinario", e);
+=======
+            throw new DaoException("Error al eliminar el veterinario " + id, e);
+>>>>>>> Stashed changes
         }
     }
 
     @Override
     public List<Veterinario> buscarPorEspecialidad(String especialidad) {
         String sql = "SELECT id, nombre, especialidad, tarifa_hora FROM veterinarios WHERE especialidad = ? ORDER BY tarifa_hora, id";
+<<<<<<< Updated upstream
         List<Veterinario> veterinarios = new ArrayList<>();
+=======
+        List<Veterinario> lista = new ArrayList<>();
+>>>>>>> Stashed changes
 
         try (Connection cn = ConexionBD.abrir(url);
              PreparedStatement ps = cn.prepareStatement(sql)) {
@@ -156,11 +204,18 @@ public final class VeterinarioDao implements IVeterinarioDao {
 
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
+<<<<<<< Updated upstream
                     veterinarios.add(mapVeterinario(rs));
                 }
             }
 
             return veterinarios;
+=======
+                    lista.add(mapear(rs));
+                }
+            }
+            return lista;
+>>>>>>> Stashed changes
 
         } catch (SQLException e) {
             throw new DaoException("Error al buscar veterinarios por especialidad", e);

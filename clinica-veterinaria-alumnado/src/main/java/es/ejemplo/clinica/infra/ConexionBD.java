@@ -15,18 +15,24 @@ public class ConexionBD {
         this.url = url;
     }
 
+<<<<<<< Updated upstream
     /**
      * Abre una conexión SQLite a partir de una URL.
      * Es el método que deben usar los DAO.
      */
+=======
+>>>>>>> Stashed changes
     public static Connection abrir(String url) throws SQLException {
         return new ConexionBD(url).obtenerConexion();
     }
 
+<<<<<<< Updated upstream
     /**
      * Abre una conexión usando la URL guardada en esta instancia.
      * Valida la URL, comprueba que el archivo SQLite exista y activa las claves foráneas.
      */
+=======
+>>>>>>> Stashed changes
     public Connection obtenerConexion() throws SQLException {
         if (url == null || !url.startsWith("jdbc:sqlite:")) {
             throw new IllegalArgumentException("URL SQLite no válida");

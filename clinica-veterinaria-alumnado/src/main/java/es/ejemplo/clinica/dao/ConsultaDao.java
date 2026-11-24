@@ -20,6 +20,7 @@ public final class ConsultaDao implements IConsultaDao {
         this.url = url;
     }
 
+<<<<<<< Updated upstream
     private Consulta mapConsulta(ResultSet rs) throws SQLException {
         return new Consulta(
                 rs.getInt("id"),
@@ -29,18 +30,34 @@ public final class ConsultaDao implements IConsultaDao {
                 rs.getBigDecimal("horas"),
                 rs.getString("estado")
         );
+=======
+    private Consulta mapear(ResultSet rs) throws SQLException {
+        Consulta consulta = new Consulta();
+        consulta.setId(rs.getInt("id"));
+        consulta.setIdMascota(rs.getInt("id_mascota"));
+        consulta.setIdVeterinario(rs.getInt("id_veterinario"));
+        consulta.setFecha(rs.getString("fecha"));
+        consulta.setHoras(rs.getBigDecimal("horas"));
+        consulta.setEstado(rs.getString("estado"));
+        return consulta;
+>>>>>>> Stashed changes
     }
 
     @Override
     public List<Consulta> listar() {
         String sql = "SELECT id, id_mascota, id_veterinario, fecha, horas, estado FROM consultas ORDER BY id";
+<<<<<<< Updated upstream
         List<Consulta> consultas = new ArrayList<>();
+=======
+        List<Consulta> lista = new ArrayList<>();
+>>>>>>> Stashed changes
 
         try (Connection cn = ConexionBD.abrir(url);
              PreparedStatement ps = cn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
+<<<<<<< Updated upstream
                 consultas.add(mapConsulta(rs));
             }
 
@@ -57,6 +74,23 @@ public final class ConsultaDao implements IConsultaDao {
             return Optional.empty();
         }
 
+=======
+                lista.add(mapear(rs));
+            }
+            return lista;
+
+        } catch (SQLException e) {
+            throw new DaoException("Error al listar consultas", e);
+        }
+    }
+
+    @Override
+    public Optional<Consulta> buscarPorId(Integer id) {
+        if (id == null) {
+            return Optional.empty();
+        }
+
+>>>>>>> Stashed changes
         String sql = "SELECT id, id_mascota, id_veterinario, fecha, horas, estado FROM consultas WHERE id = ?";
 
         try (Connection cn = ConexionBD.abrir(url);
@@ -65,6 +99,7 @@ public final class ConsultaDao implements IConsultaDao {
             ps.setInt(1, id);
 
             try (ResultSet rs = ps.executeQuery()) {
+<<<<<<< Updated upstream
                 if (rs.next()) {
                     return Optional.of(mapConsulta(rs));
                 }
@@ -74,6 +109,13 @@ public final class ConsultaDao implements IConsultaDao {
 
         } catch (SQLException e) {
             throw new DaoException("Error al buscar la consulta por id", e);
+=======
+                return rs.next() ? Optional.of(mapear(rs)) : Optional.empty();
+            }
+
+        } catch (SQLException e) {
+            throw new DaoException("Error al buscar la consulta " + id, e);
+>>>>>>> Stashed changes
         }
     }
 
@@ -97,10 +139,16 @@ public final class ConsultaDao implements IConsultaDao {
                     entidad.setId(id);
                     return id;
                 }
+<<<<<<< Updated upstream
             }
 
             throw new DaoException("No se pudo obtener el identificador de la consulta insertada", null);
 
+=======
+                throw new DaoException("No se pudo obtener el identificador de la consulta insertada", null);
+            }
+
+>>>>>>> Stashed changes
         } catch (SQLException e) {
             throw new DaoException("Error al insertar la consulta", e);
         }
@@ -127,7 +175,11 @@ public final class ConsultaDao implements IConsultaDao {
             return ps.executeUpdate();
 
         } catch (SQLException e) {
+<<<<<<< Updated upstream
             throw new DaoException("Error al actualizar la consulta", e);
+=======
+            throw new DaoException("Error al actualizar la consulta " + entidad.getId(), e);
+>>>>>>> Stashed changes
         }
     }
 
@@ -146,14 +198,22 @@ public final class ConsultaDao implements IConsultaDao {
             return ps.executeUpdate();
 
         } catch (SQLException e) {
+<<<<<<< Updated upstream
             throw new DaoException("Error al eliminar la consulta", e);
+=======
+            throw new DaoException("Error al eliminar la consulta " + id, e);
+>>>>>>> Stashed changes
         }
     }
 
     @Override
     public List<Consulta> buscarPorMascota(Integer idMascota) {
         String sql = "SELECT id, id_mascota, id_veterinario, fecha, horas, estado FROM consultas WHERE id_mascota = ? ORDER BY id";
+<<<<<<< Updated upstream
         List<Consulta> consultas = new ArrayList<>();
+=======
+        List<Consulta> lista = new ArrayList<>();
+>>>>>>> Stashed changes
 
         try (Connection cn = ConexionBD.abrir(url);
              PreparedStatement ps = cn.prepareStatement(sql)) {
@@ -162,11 +222,18 @@ public final class ConsultaDao implements IConsultaDao {
 
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
+<<<<<<< Updated upstream
                     consultas.add(mapConsulta(rs));
                 }
             }
 
             return consultas;
+=======
+                    lista.add(mapear(rs));
+                }
+            }
+            return lista;
+>>>>>>> Stashed changes
 
         } catch (SQLException e) {
             throw new DaoException("Error al buscar consultas por mascota", e);
@@ -176,7 +243,11 @@ public final class ConsultaDao implements IConsultaDao {
     @Override
     public List<Consulta> buscarPorVeterinario(Integer idVeterinario) {
         String sql = "SELECT id, id_mascota, id_veterinario, fecha, horas, estado FROM consultas WHERE id_veterinario = ? ORDER BY id";
+<<<<<<< Updated upstream
         List<Consulta> consultas = new ArrayList<>();
+=======
+        List<Consulta> lista = new ArrayList<>();
+>>>>>>> Stashed changes
 
         try (Connection cn = ConexionBD.abrir(url);
              PreparedStatement ps = cn.prepareStatement(sql)) {
@@ -185,11 +256,18 @@ public final class ConsultaDao implements IConsultaDao {
 
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
+<<<<<<< Updated upstream
                     consultas.add(mapConsulta(rs));
                 }
             }
 
             return consultas;
+=======
+                    lista.add(mapear(rs));
+                }
+            }
+            return lista;
+>>>>>>> Stashed changes
 
         } catch (SQLException e) {
             throw new DaoException("Error al buscar consultas por veterinario", e);
@@ -199,17 +277,27 @@ public final class ConsultaDao implements IConsultaDao {
     @Override
     public List<Consulta> listarProgramadas() {
         String sql = "SELECT id, id_mascota, id_veterinario, fecha, horas, estado FROM consultas WHERE estado = 'PROGRAMADA' ORDER BY id";
+<<<<<<< Updated upstream
         List<Consulta> consultas = new ArrayList<>();
+=======
+        List<Consulta> lista = new ArrayList<>();
+>>>>>>> Stashed changes
 
         try (Connection cn = ConexionBD.abrir(url);
              PreparedStatement ps = cn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
+<<<<<<< Updated upstream
                 consultas.add(mapConsulta(rs));
             }
 
             return consultas;
+=======
+                lista.add(mapear(rs));
+            }
+            return lista;
+>>>>>>> Stashed changes
 
         } catch (SQLException e) {
             throw new DaoException("Error al listar consultas programadas", e);

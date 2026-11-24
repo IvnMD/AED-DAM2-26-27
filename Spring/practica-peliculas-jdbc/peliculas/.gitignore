@@ -1,0 +1,16 @@
+# Maven
+target/
+
+# Configuración local del IDE
+.idea/
+.vscode/
+*.iml
+
+# Archivos temporales
+*.log
+*.tmp
+
+# Archivos auxiliares de SQLite
+*.sqlite3-journal
+*.sqlite3-wal
+*.sqlite3-shm

@@ -1,0 +1,6 @@
+HTTP/1.1 200 
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Tue, 24 Nov 2026 22:48:08 GMT
+
+[{"codigo":"PEL001","titulo":"El viaje de Chihiro","anioEstreno":2001,"duracionMinutos":125},{"codigo":"PEL002","titulo":"Mi vecino Totoro","anioEstreno":1988,"duracionMinutos":86}]

@@ -20,6 +20,7 @@ public final class ClienteDao implements IClienteDao {
         this.url = url;
     }
 
+<<<<<<< Updated upstream
     private Cliente mapCliente(ResultSet rs) throws SQLException {
         return new Cliente(
                 rs.getInt("id"),
@@ -27,6 +28,15 @@ public final class ClienteDao implements IClienteDao {
                 rs.getString("email"),
                 rs.getString("telefono")
         );
+=======
+    private Cliente mapear(ResultSet rs) throws SQLException {
+        Cliente cliente = new Cliente();
+        cliente.setId(rs.getInt("id"));
+        cliente.setNombre(rs.getString("nombre"));
+        cliente.setEmail(rs.getString("email"));
+        cliente.setTelefono(rs.getString("telefono"));
+        return cliente;
+>>>>>>> Stashed changes
     }
 
     @Override
@@ -39,9 +49,14 @@ public final class ClienteDao implements IClienteDao {
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
+<<<<<<< Updated upstream
                 lista.add(mapCliente(rs));
             }
 
+=======
+                lista.add(mapear(rs));
+            }
+>>>>>>> Stashed changes
             return lista;
 
         } catch (SQLException e) {
@@ -63,6 +78,7 @@ public final class ClienteDao implements IClienteDao {
             ps.setInt(1, id);
 
             try (ResultSet rs = ps.executeQuery()) {
+<<<<<<< Updated upstream
                 if (rs.next()) {
                     return Optional.of(mapCliente(rs));
                 }
@@ -72,6 +88,13 @@ public final class ClienteDao implements IClienteDao {
 
         } catch (SQLException e) {
             throw new DaoException("Error al buscar cliente por id", e);
+=======
+                return rs.next() ? Optional.of(mapear(rs)) : Optional.empty();
+            }
+
+        } catch (SQLException e) {
+            throw new DaoException("Error al buscar el cliente " + id, e);
+>>>>>>> Stashed changes
         }
     }
 
@@ -93,12 +116,19 @@ public final class ClienteDao implements IClienteDao {
                     entidad.setId(id);
                     return id;
                 }
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
                 throw new DaoException("No se pudo obtener el identificador del cliente insertado", null);
             }
 
         } catch (SQLException e) {
+<<<<<<< Updated upstream
             throw new DaoException("Error al insertar cliente", e);
+=======
+            throw new DaoException("Error al insertar el cliente", e);
+>>>>>>> Stashed changes
         }
     }
 
@@ -121,7 +151,11 @@ public final class ClienteDao implements IClienteDao {
             return ps.executeUpdate();
 
         } catch (SQLException e) {
+<<<<<<< Updated upstream
             throw new DaoException("Error al actualizar cliente", e);
+=======
+            throw new DaoException("Error al actualizar el cliente " + entidad.getId(), e);
+>>>>>>> Stashed changes
         }
     }
 
@@ -140,7 +174,11 @@ public final class ClienteDao implements IClienteDao {
             return ps.executeUpdate();
 
         } catch (SQLException e) {
+<<<<<<< Updated upstream
             throw new DaoException("Error al eliminar cliente", e);
+=======
+            throw new DaoException("Error al eliminar el cliente " + id, e);
+>>>>>>> Stashed changes
         }
     }
 }
