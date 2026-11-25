@@ -1,6 +1,6 @@
 package aula.tareas.repository;
 
-import aula.tareas.api.TareaResquest;
+import aula.tareas.api.TareaRequest;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -10,12 +10,12 @@ import java.util.concurrent.atomic.AtomicLong;
 @Repository()
 public class TareaRepository implements ITareaRepository{
     private final AtomicLong secuencia = new AtomicLong();
-    private final ConcurrentSkipListMap<Long, TareaResquest> tareas = new ConcurrentSkipListMap<>();
+    private final ConcurrentSkipListMap<Long, TareaRequest> tareas = new ConcurrentSkipListMap<>();
 
     @Override
-    public TareaResquest create(String titulo) {
+    public TareaRequest create(String titulo) {
         long id = secuencia.incrementAndGet();
-        var tarea = new TareaResquest(id, titulo.strip());
+        var tarea = new TareaRequest(id, titulo.strip());
         tareas.put(id, tarea);
         return tarea;
     }
@@ -27,19 +27,19 @@ public class TareaRepository implements ITareaRepository{
     }
 
     @Override
-    public List<TareaResquest> findAll() {
+    public List<TareaRequest> findAll() {
         return List.copyOf(tareas.values());
     }
 
     @Override
-    public TareaResquest findById(long identificador) {
+    public TareaRequest findById(long identificador) {
         return tareas.get(identificador);
     }
 
     @Override
-    public TareaResquest update(TareaResquest tareaResquest) {
-        // buscar la tareaResquest por el id
-        // actualizar la tareaResquest
+    public TareaRequest update(TareaRequest tarea) {
+        // buscar la tarea por el id
+        // actualizar la tarea
         return null;
     }
 

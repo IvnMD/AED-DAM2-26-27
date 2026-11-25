@@ -1,7 +1,7 @@
 package aula.tareas.repository;
 
-import aula.tareas.modelo.Tarea;
+import aula.tareas.entity.TareaEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface TareaRepositoryJpa extends JpaRepository<Tarea, Integer> {
+public interface TareaRepositoryJpa extends JpaRepository<TareaEntity,Long> {
 }

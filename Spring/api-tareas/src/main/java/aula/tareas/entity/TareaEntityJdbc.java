@@ -2,15 +2,23 @@ package aula.tareas.entity;
 
 public class TareaEntityJdbc {
 
-    private long id;
+    private Long id;
     private String titulo;
 
-    public TareaEntityJdbc(long id, String titulo) {
+    public TareaEntityJdbc(Long id) {
+        this.id = id;
+    }
+
+    public TareaEntityJdbc(Long id, String titulo) {
         this.id = id;
         this.titulo = titulo;
     }
 
-    public TareaEntityJdbc(long id) {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -20,13 +28,5 @@ public class TareaEntityJdbc {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 }

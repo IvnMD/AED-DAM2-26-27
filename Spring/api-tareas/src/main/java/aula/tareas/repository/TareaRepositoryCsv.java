@@ -1,6 +1,6 @@
 package aula.tareas.repository;
 
-import aula.tareas.api.TareaResquest;
+import aula.tareas.api.TareaRequest;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -13,23 +13,22 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository("tareaRepositoryCsv")
-public class TareaRepositoryCsv implements ITareaRepository {
-    private Path path;
+@Repository("repositoryCsv")
+public class TareaRepositoryCsv implements ITareaRepository{
+    private  Path path;
     private final CSVFormat inputFormat = CSVFormat.DEFAULT.builder()
             .setHeader()
-            .setSkipHeaderRecord(true)
-            .build();
+            .setSkipHeaderRecord(true).build();
     private final CSVFormat outputFormat = CSVFormat.DEFAULT.builder()
             .setHeader("id", "titulo")
-            .build ();
+            .build();
 
     public TareaRepositoryCsv() {
-        path = Path.of("data", "tareas.csv");
+        path = Path.of("data", "tarea.csv");
     }
 
     @Override
-    public TareaResquest create(String titulo) {
+    public TareaRequest create(String titulo) {
         return null;
     }
 
@@ -39,16 +38,16 @@ public class TareaRepositoryCsv implements ITareaRepository {
     }
 
     @Override
-    public List findAll() {
-        if(Files.notExists(path)) {
+    public List<TareaRequest> findAll() {
+        if (Files.notExists(path)) {
             return new ArrayList<>();
         }
         try {
-            List result = new ArrayList<>();
+            List<TareaRequest> result = new ArrayList<>();
             try (Reader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8);
                  CSVParser parser = inputFormat.parse(reader)) {
                 for (CSVRecord row : parser) {
-                    result.add(new TareaResquest(
+                    result.add(new TareaRequest(
                             Long.parseLong(row.get("id")),
                             row.get("titulo")));
                 }
@@ -57,15 +56,16 @@ public class TareaRepositoryCsv implements ITareaRepository {
         }catch (Exception e) {
             return List.of();
         }
+
     }
 
     @Override
-    public TareaResquest findById(long identificador) {
+    public TareaRequest findById(long identificador) {
         return null;
     }
 
     @Override
-    public TareaResquest update(TareaResquest tareaResquest) {
+    public TareaRequest update(TareaRequest tarea) {
         return null;
     }
 }

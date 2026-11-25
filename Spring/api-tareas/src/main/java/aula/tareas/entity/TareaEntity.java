@@ -9,25 +9,28 @@ import jakarta.persistence.Id;
 public class TareaEntity {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private long id;
-    private String titulo;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
+    private String titulo;
 
     public TareaEntity() {}
 
+    public TareaEntity(Long id) {
+        this.id = id;
+    }
 
-    public TareaEntity(long id, String titulo) {
+    public TareaEntity(Long id, String titulo) {
         this.id = id;
         this.titulo = titulo;
     }
 
-    public TareaEntity(long id) {
-        this.id = id;
+    public Long getId() {
+        return id;
     }
 
-    public TareaEntity(Long o, String titulo) {
-
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitulo() {
@@ -36,13 +39,5 @@ public class TareaEntity {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 }

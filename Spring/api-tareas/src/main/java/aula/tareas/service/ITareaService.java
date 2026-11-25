@@ -1,13 +1,27 @@
 package aula.tareas.service;
 
-import aula.tareas.api.TareaResquest;
+import aula.tareas.api.TareaRequest;
 
 import java.util.List;
 
 public interface ITareaService {
-    public List<TareaResquest> listar();
+    /**
+     * Soy la documentacion del metodo
+     * @return
+     */
+    public List<TareaRequest> listar();
 
-    public TareaResquest buscar(long id);
+    /**
+     * Soy la documentacion del metodo
+     * @param id
+     * @return
+     */
+    public TareaRequest buscar(long id);
 
-    public TareaResquest crear(String titulo);
+    /**
+     * Sigo siendo la documentacion del metodo
+     * @param titulo
+     * @return
+     */
+    public TareaRequest crear(String titulo);
 }

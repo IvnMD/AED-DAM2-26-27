@@ -4,7 +4,8 @@ import java.util.List;
 import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.concurrent.atomic.AtomicLong;
 
-import aula.tareas.api.TareaResquest;
+import aula.tareas.api.TareaRequest;
+import aula.tareas.modelo.Tarea;
 import aula.tareas.repository.ITareaRepository;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -12,31 +13,35 @@ import org.springframework.stereotype.Service;
 @Service("tareaServiceCsv")
 public class TareaServiceCsv implements ITareaService{
     private final AtomicLong secuencia = new AtomicLong();
-    private final ConcurrentSkipListMap<Long, TareaResquest> tareas = new ConcurrentSkipListMap<>();
+    private final ConcurrentSkipListMap<Long, TareaRequest> tareas = new ConcurrentSkipListMap<>();
     private final ITareaRepository repository;
 
-//El pasado
+    //El pasado
     /**
-     public TareaServiceCsv() {
-     this.repository = new TareaRepository();
-     }
+    public TareaService() {
+        this.repository = new TareaRepository();
+    }
      **/
 
-//Spring
-    public TareaServiceCsv(@Qualifier("tareaRepositoryCsv") ITareaRepository repository) {
+    //Spring
+    public TareaServiceCsv(@Qualifier("repositoryCsv")  ITareaRepository repository) {
         this.repository = repository;
     }
 
 
-    public List<TareaResquest> listar() {
+    public List<TareaRequest> listar() {
         return repository.findAll();
     }
 
-    public TareaResquest buscar(long id) {
+    public TareaRequest buscar(long id) {
         return repository.findById(id);
     }
 
-    public TareaResquest crear(String titulo) {
+    public TareaRequest buscar(Tarea tarea) {
+        return repository.findById(tarea.getIdentificador());
+    }
+
+    public TareaRequest crear(String titulo) {
         if (titulo == null || titulo.isBlank()) {
             return null;
         }

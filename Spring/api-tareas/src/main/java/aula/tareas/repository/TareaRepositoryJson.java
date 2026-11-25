@@ -1,6 +1,6 @@
 package aula.tareas.repository;
 
-import aula.tareas.api.TareaResquest;
+import aula.tareas.api.TareaRequest;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Repository;
@@ -12,29 +12,28 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
-@Repository("tareaRepositoryJson")
+@Repository("repositoryJson")
 public class TareaRepositoryJson implements ITareaRepository{
     private final AtomicLong secuencia = new AtomicLong();
     private Path path;
     private ObjectMapper mapper;
-    private final String url = "data/test3.json";
-    private List<TareaResquest> lista;
+    private final String url = "jdbc:sqlite:data/tarea.sqlite3 / db";
+    private List<TareaRequest> lista;
 
     public TareaRepositoryJson() {
-//path = Path.of("data", "tarea.json");
-//path =Path.of("data/test.json");
-/**
- if (!Files.exists(path)) {
- try {
- Files.createFile(path);
- } catch (IOException e) {
- throw new RuntimeException(e);
- }
- }
- **/
+        //path = Path.of("data", "tarea.json");
+        //path =Path.of("data/test.json");
+        /**
+        if (!Files.exists(path)) {
+            try {
+                Files.createFile(path);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+         **/
         this("data/tarea.json");
         lista = getAll();
-
     }
 
     public TareaRepositoryJson(String url) {
@@ -49,9 +48,9 @@ public class TareaRepositoryJson implements ITareaRepository{
     }
 
     @Override
-    public TareaResquest create(String titulo) {
+    public TareaRequest create(String titulo) {
         long id = secuencia.incrementAndGet();
-        var tarea = new TareaResquest(id, titulo.strip());
+        var tarea = new TareaRequest(id, titulo.strip());
         lista.add(tarea);
         saveAll(lista);
         return tarea;
@@ -63,21 +62,21 @@ public class TareaRepositoryJson implements ITareaRepository{
     }
 
     @Override
-    public List<TareaResquest> findAll() {
-        return List.copyOf(lista);
+    public List<TareaRequest> findAll() {
+       return List.copyOf(lista);
     }
 
     @Override
-    public TareaResquest findById(long identificador) {
+    public TareaRequest findById(long identificador) {
         return null;
     }
 
     @Override
-    public TareaResquest update(TareaResquest tareaResquest) {
+    public TareaRequest update(TareaRequest tarea) {
         return null;
     }
 
-    private void saveAll(List<TareaResquest> items) {
+    private void saveAll(List<TareaRequest> items) {
         try {
             Path parent = path.getParent();
             if (parent != null) {
@@ -85,17 +84,17 @@ public class TareaRepositoryJson implements ITareaRepository{
             }
             mapper.writerWithDefaultPrettyPrinter().writeValue(path.toFile(), items);
         }catch (Exception exception) {
-//Logger
+            //Logger
         }
 
     }
 
-    public List<TareaResquest> getAll() {
+    public List<TareaRequest> getAll() {
         try {
             return new ArrayList<>(mapper.readValue(
-                    path.toFile(), new TypeReference<List<TareaResquest>>() {}));
+                    path.toFile(), new TypeReference<List<TareaRequest>>() {}));
         }catch (Exception exception) {
-//Logger
+            //Logger
             return new ArrayList<>();
         }
 

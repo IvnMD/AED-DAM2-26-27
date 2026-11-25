@@ -1,23 +1,33 @@
 package aula.tareas.mapper;
 
-import aula.tareas.api.TareaResquest;
 import aula.tareas.entity.TareaEntityJdbc;
+import aula.tareas.api.TareaRequest;
 import aula.tareas.modelo.Tarea;
 
 public class TareaMapperJdbc {
 
-    static public TareaResquest toDomain(TareaEntityJdbc tareaEntityJdbc) {
+    static public TareaRequest toDomain(TareaEntityJdbc entityJdbc) {
+
         return null;
     }
 
-     public static TareaEntityJdbc toJdbc(TareaResquest tareaResquest) {
-         return null;
-     }
+    static public Tarea toDomain(TareaRequest request) {
+        return new Tarea(request.id(), request.titulo());
+    }
 
-     static public TareaEntityJdbc to(Tarea tarea) {
+    static public Tarea toDomain(long id) {
+        return new Tarea(id);
+    }
+
+    static public TareaEntityJdbc toJdbc(TareaRequest tarea) {
+        return null;
+    }
+
+    static public TareaEntityJdbc to(Tarea tarea) {
         if (tarea == null) {
             return null;
         }
-        return new TareaEntityJdbc(tarea.getId(), tarea.getTitulo());
-     }
+        return new TareaEntityJdbc(tarea.getIdentificador(), tarea.getTitle());
+    }
+
 }

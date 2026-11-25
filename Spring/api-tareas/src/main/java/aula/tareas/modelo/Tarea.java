@@ -1,28 +1,33 @@
 package aula.tareas.modelo;
 
-import java.util.ArrayList;
-
 public class Tarea {
 
-    private long id;
-    private String titulo;
+    private long identificador;
+    private String title;
 
-    public Tarea(String titulo, long id) {
-        this.titulo = titulo;
-        this.id = id;
+    public Tarea(long identificador) {
+        this.identificador = identificador;
+
     }
 
-    public long getId() {
-        return id;
+    public Tarea(long identificador, String title) {
+        this.identificador = identificador;
+        this.title = title;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public long getIdentificador() {
+        return identificador;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setIdentificador(long identificador) {
+        this.identificador = identificador;
     }
 
+    public String getTitle() {
+        return title;
+    }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }
